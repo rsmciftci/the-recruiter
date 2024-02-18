@@ -17,9 +17,11 @@ class Candidate(models.Model):
     city = models.CharField(max_length=30, null=False, blank=False)
     town = models.CharField(max_length=30, null=False, blank=False)
     postcode = models.CharField(max_length=30, null=False, blank=False)
-    gender = models.CharField(
-        choices=[(tag, tag.value) for tag in GenderEnum], null=False, blank=False
-    )
+    # TODO: GenderEnum needs to be serialized, find best method to do
+    # gender = models.CharField(
+    #     choices=[(tag, tag.value) for tag in GenderEnum], null=False, blank=False
+    # )
+    gender = models.CharField(max_length=30, null=False, blank=False)    
 
 
 class JobTypeEnum(Enum):

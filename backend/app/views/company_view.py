@@ -23,15 +23,15 @@ def add_company(request):
 
 
 @api_view(["DELETE"])
-def delete_company(self, pk):
+def delete_company(request, id):
     try:
-        company = Company.objects.get(id=pk)
+        company = Company.objects.get(id=id)
     except Company.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     company.delete()
     return Response(
-        {"error": "Company has been deleted succesfully."},
+        {"message": "Company has been deleted succesfully."},
         status=status.HTTP_204_NO_CONTENT,
     )
     

@@ -8,5 +8,5 @@ urlpatterns = [
     path('candidateupdate/<int:id>', views.update_candidate, name='update_candidate'),
     
     path("company/", company_view.add_company ),
-    path("company-delete/<int:pk>", company_view.delete_company, name="delete-company"),
+    path("company-delete/<int:id>", company_view.delete_company, name="delete-company"),
 ]

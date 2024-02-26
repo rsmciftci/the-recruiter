@@ -51,14 +51,15 @@ def add_candidate(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['PUT','DELETE'])
-def update_and_delete_candidate(request, id):    
+def update_or_delete_candidate(request, id):    
     try:
         company = Candidate.objects.get(id=id)
     except Candidate.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
     if request.method == "PUT":
-        serializer = CandidateSerializer(company, data=request.data)
+        serializer = CandidateSerializer(company, data=request.data)        
+        serializer.password_str_to_md5(data=request.data)
         
         if serializer.is_valid():
             serializer.save()

@@ -27,8 +27,13 @@ def ApiOverview(request):
 def add_candidate(request):
     candidate = CandidateSerializer(data=request.data)
     
+    username = request.data.get('username')
     email = request.data.get('email')
     phone = request.data.get('phone')
+    
+    
+    if Candidate.objects.filter(username=username).exists():
+        raise serializers.ValidationError('Username already exists')
     
     if Candidate.objects.filter(email=email).exists():
         raise serializers.ValidationError('Email already exists')
@@ -41,3 +46,20 @@ def add_candidate(request):
         return Response(candidate.data)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PUT'])
+def update_candidate(request, id):
+    
+    try:
+        Candidate.objects.get(id=id)
+    except Candidate.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    candidate = CandidateSerializer(data=request.data)
+    
+    if candidate.is_valid():
+        candidate.update()
+        return Response(status=status.HTTP_200_OK)
+    return Response(candidate.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    

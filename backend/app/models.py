@@ -8,6 +8,8 @@ class GenderEnum(Enum):
 
 
 class Candidate(models.Model):
+    
+    username = models.CharField(unique=True, null=False, blank=False)
     first_name = models.CharField(max_length=30, null=False, blank=False)
     surname = models.CharField(max_length=30, null=False, blank=False)
     password = models.CharField(null=False, blank=False)

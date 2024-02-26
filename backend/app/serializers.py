@@ -5,4 +5,16 @@ class CandidateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Candidate
-        fields = "__all__"
+        fields = (
+            'username',
+            'first_name',
+            'surname',
+            'password',
+            'email',
+            'date_of_birth',
+            'phone',
+            'city',
+            'town',
+            'postcode',
+            'gender'
+        )

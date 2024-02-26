@@ -22,16 +22,38 @@ def add_company(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(["DELETE"])
-def delete_company(request, id):
+# @api_view(["DELETE"])
+# def delete_company(request, id):
+#     try:
+#         company = Company.objects.get(id=id)
+#     except Company.DoesNotExist:
+#         return Response(status=status.HTTP_404_NOT_FOUND)
+
+#     company.delete()
+#     return Response(
+#         {"message": "Company has been deleted succesfully."},
+#         status=status.HTTP_204_NO_CONTENT,
+#     )
+
+
+@api_view(["PUT","DELETE"])
+def update_or_delete_company(request, id):
     try:
         company = Company.objects.get(id=id)
     except Company.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    company.delete()
-    return Response(
-        {"message": "Company has been deleted succesfully."},
-        status=status.HTTP_204_NO_CONTENT,
-    )
-    
+    if request.method == "PUT":
+        serializer = CompanySerializer(company, data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "DELETE":
+        company.delete()
+        return Response(
+            {"message": "Company has been deleted succesfully."},
+            status=status.HTTP_204_NO_CONTENT,
+        )

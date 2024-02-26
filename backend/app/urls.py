@@ -5,8 +5,8 @@ urlpatterns = [
     path('hello-world/', views.hello_world  , name='hello_world'),
     path('', views.ApiOverview , name='home'),
     path('candidate/', views.add_candidate, name='add-candidate'),
-    path('candidateupdate/<int:id>', views.update_candidate, name='update_candidate'),
+    path('candidate/<int:id>', views.update_or_delete_candidate, name='update_or_delete_candidate'),
     
     path("company/", company_view.add_company ),
-    path("company-delete/<int:id>", company_view.delete_company, name="delete-company"),
+    path("company/<int:id>", company_view.update_or_delete_company, name="update_or_delete_company"),
 ]

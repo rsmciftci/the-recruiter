@@ -50,19 +50,21 @@ def add_candidate(request):
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['PUT'])
-def update_candidate(request, id):
-    
+@api_view(['PUT','DELETE'])
+def update_and_delete_candidate(request, id):    
     try:
-        Candidate.objects.get(id=id)
+        company = Candidate.objects.get(id=id)
     except Candidate.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     
-    candidate = CandidateSerializer(data=request.data)
-    
-    if candidate.is_valid():
-        candidate.update()
-        return Response(status=status.HTTP_200_OK)
-    return Response(candidate.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+    if request.method == "PUT":
+        serializer = CandidateSerializer(company, data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == "DELETE":
+        company.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     

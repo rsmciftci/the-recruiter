@@ -26,10 +26,12 @@ def ApiOverview(request):
 @api_view(['POST'])
 def add_candidate(request):
     candidate = CandidateSerializer(data=request.data)
+    candidate.password_str_to_md5(data=request.data)
     
     username = request.data.get('username')
     email = request.data.get('email')
     phone = request.data.get('phone')
+
     
     
     if Candidate.objects.filter(username=username).exists():
@@ -42,6 +44,7 @@ def add_candidate(request):
         raise serializers.ValidationError('Phone already exists')
 
     if candidate.is_valid():
+        
         candidate.save()
         return Response(candidate.data)
     else:

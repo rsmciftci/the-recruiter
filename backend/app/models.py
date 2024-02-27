@@ -34,30 +34,33 @@ class JobTypeEnum(Enum):
 
 class Company(models.Model):
     
-    name = models.CharField(max_length=50, null=False, blank=False)
+    name = models.CharField(max_length=50, null=False, blank=False, unique=True)
     city = models.CharField(max_length=30, null=False, blank=False)
     town = models.CharField(max_length=30, null=False, blank=False)
-    phone = models.CharField(max_length=15, null=False, blank=False, unique=True)
+    phone = models.CharField(max_length=15, null=False, blank=False)
     postcode = models.CharField(max_length=30, null=False, blank=False)
 
 
 class Recruiter(models.Model):
+    
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-
     first_name = models.CharField(max_length=30, null=False, blank=False)
     surname = models.CharField(max_length=30, null=False, blank=False)
     phone = models.CharField(max_length=15, null=False, blank=False, unique=True)
     email = models.EmailField(unique=True, null=False, blank=False)
     password = models.CharField(null=False, blank=False)
-    gender = models.CharField(
-        max_length=6,
-        choices=[(tag, tag.value) for tag in GenderEnum],
-        null=False,
-        blank=False,
-    )
+    gender = models.CharField(max_length=30, null=False, blank=False)    
+    
+    # gender = models.CharField(
+    #     max_length=6,
+    #     choices=[(tag, tag.value) for tag in GenderEnum],
+    #     null=False,
+    #     blank=False,
+    # )
 
 
 class JobAdvert(models.Model):
+    
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)

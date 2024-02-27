@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import views
-from .views import company_view, recruiter_view
+from .views import company_view, recruiter_view, jobadvert_view
 urlpatterns = [
     path('hello-world/', views.hello_world  , name='hello_world'),
     path('', views.ApiOverview , name='home'),
@@ -11,6 +11,9 @@ urlpatterns = [
     path("company/<int:id>", company_view.update_or_delete_company, name="update_or_delete_company"),
     
     path('recruiter/', recruiter_view.add_recruiter),
-    path('recruiter/<int:id>', recruiter_view.update_or_delete_recruiter)
+    path('recruiter/<int:id>', recruiter_view.update_or_delete_recruiter),
+    
+    path('jobadvert/', jobadvert_view.add_jobadvert),
+    path('jobadvert/<int:id>', jobadvert_view.update_or_delete_jobadvert),
     
 ]

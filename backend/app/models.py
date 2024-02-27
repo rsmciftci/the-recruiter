@@ -23,7 +23,8 @@ class Candidate(models.Model):
     # gender = models.CharField(
     #     choices=[(tag, tag.value) for tag in GenderEnum], null=False, blank=False
     # )
-    gender = models.CharField(max_length=30, null=False, blank=False)    
+    gender = models.CharField(max_length=30, null=False, blank=False)
+
 
 
 class JobTypeEnum(Enum):
@@ -63,7 +64,7 @@ class JobAdvert(models.Model):
     
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+    candidate = models.ManyToManyField(Candidate, blank=True)
 
     title = models.CharField(max_length=100, null=False, blank=False)
     publish_date = models.DateField(null=False, blank=False)
@@ -71,5 +72,5 @@ class JobAdvert(models.Model):
     salary = models.CharField(max_length=50, null=False, blank=False)
     city = models.CharField(max_length=30, null=False, blank=False)
     job_type = models.CharField(
-        choices=[(tag, tag.value) for tag in JobTypeEnum], null=False, blank=False
+       max_length=15, null=False, blank=False
     )

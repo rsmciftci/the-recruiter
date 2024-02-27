@@ -1,11 +1,10 @@
 from django.urls import path
-from .views import views
-from .views import company_view, recruiter_view, jobadvert_view
+from .views import company_view, recruiter_view, jobadvert_view, candidate_views
 urlpatterns = [
-    path('hello-world/', views.hello_world  , name='hello_world'),
-    path('', views.ApiOverview , name='home'),
-    path('candidate/', views.add_candidate, name='add-candidate'),
-    path('candidate/<int:id>', views.update_or_delete_candidate, name='update_or_delete_candidate'),
+    path('hello-world/', candidate_views.hello_world  , name='hello_world'),
+    path('', candidate_views.ApiOverview , name='home'),
+    path('candidate/', candidate_views.add_candidate, name='add-candidate'),
+    path('candidate/<int:id>', candidate_views.update_or_delete_candidate, name='update_or_delete_candidate'),
     
     path("company/", company_view.add_company ),
     path("company/<int:id>", company_view.update_or_delete_company, name="update_or_delete_company"),

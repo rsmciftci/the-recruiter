@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ..models import Candidate
-from ..serializers.serializers import CandidateSerializer
+from ..serializers.candidate_serializers import CandidateSerializer
 from rest_framework import serializers, status
 
 

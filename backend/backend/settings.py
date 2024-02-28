@@ -137,3 +137,8 @@ REST_FRAMEWORK = {  # TODO: remove these for production, it is not suggestes
     "DEFAULT_PERMISSION_CLASSES": [],
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
+
+CORS_ALLOWED_ORIGINS = [
+    # Add the allowed origins for the endpoint
+    "http://localhost:3000",
+]

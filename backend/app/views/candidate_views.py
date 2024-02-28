@@ -25,9 +25,8 @@ def ApiOverview(request):
 
 
 @api_view(['POST','GET'])
-def add_or_find_candidate(request):
-    
-    if request.method == "POST":
+def add_candidate(request):   
+
         candidate = CandidateSerializer(data=request.data)
         candidate.password_str_to_md5(data=request.data)
         
@@ -52,15 +51,19 @@ def add_or_find_candidate(request):
             return Response(status=status.HTTP_201_CREATED)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == "GET":
-        email = request.data.get("email")
-        password = hashlib.md5(request.data.get("password").encode("utf-8")).hexdigest() 
-        print(email)
-        try:
-            company = Candidate.objects.get(email=email, password=password)
-        except Candidate.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-        return Response(status=status.HTTP_200_OK)
+
+    
+@api_view(['POST'])
+def find_candidate(request):
+
+    email = request.data.get("email")
+    password = hashlib.md5(request.data.get("password").encode("utf-8")).hexdigest() 
+    try:
+        candidate = Candidate.objects.get(email=email, password=password)
+        
+    except Candidate.DoesNotExist:
+        return Response(candidate,status=status.HTTP_404_NOT_FOUND)
+    return Response(CandidateSerializer(candidate).data,status=status.HTTP_200_OK)
     
 @api_view(['PUT','DELETE'])
 def update_or_delete_candidate(request, id):    

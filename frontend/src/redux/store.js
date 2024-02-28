@@ -3,6 +3,6 @@ import candidateSlice from "./candidateSlice"
 
 export const store = configureStore({
     reducer : {
-        data : candidateSlice
+        candidateData : candidateSlice
     },
 })

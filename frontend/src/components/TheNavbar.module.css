@@ -1,0 +1,13 @@
+.oneline {
+    width: 120px;
+}
+
+.centersearch {
+padding-left: 150px;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+    
+}

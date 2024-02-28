@@ -1,12 +1,12 @@
 import {  useSelector } from 'react-redux';
 import HomeLogout from './HomeLogout';
+import Test from'./Test';
 
 function Home() {
-    const data = useSelector(state => state.data)
-
+    const candidateData = useSelector(state => state.candidateData)
     return (
        <div>
-        {!data.login ? <HomeLogout/> : ""}
+        {localStorage.getItem("loggedin") ? "" : <HomeLogout/> }
        </div>
     );
 }

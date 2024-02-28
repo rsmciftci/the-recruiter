@@ -4,6 +4,8 @@ import styles from './Home.module.css'
 import Button from 'react-bootstrap/Button';
 
 function Home() {
+
+
     return (
         <div className={styles.container}>
             <div className={styles.overlay}>            </div>
@@ -33,7 +35,7 @@ function Home() {
                 </div>
                 <hr className={styles.horizontalline} />
                 <div className={styles.centerbutton}>
-                    <Button variant="success">Create new account</Button>
+                    <Button variant="success"  href='/create-new-account'>Create new account</Button>
                 </div>
 
 

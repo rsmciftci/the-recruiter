@@ -3,7 +3,7 @@ from .views import company_view, recruiter_view, jobadvert_view, candidate_views
 urlpatterns = [
     path('hello-world/', candidate_views.hello_world  , name='hello_world'),
     path('', candidate_views.ApiOverview , name='home'),
-    path('candidate/', candidate_views.add_candidate, name='add-candidate'),
+    path('candidate/', candidate_views.add_or_find_candidate, name='add_or_find_candidate'),
     path('candidate/<int:id>', candidate_views.update_or_delete_candidate, name='update_or_delete_candidate'),
     
     path("company/", company_view.add_company ),

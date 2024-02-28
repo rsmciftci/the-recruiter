@@ -7,6 +7,7 @@ function TheNavbar() {
     <div>
       <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark">
         <Container>
+          
           <Navbar.Brand href="/">
             <img src='the-recruiter.png' width={132} height={30}></img>
           </Navbar.Brand>

@@ -4,6 +4,9 @@ import TheNavbar from './components/TheNavbar';
 import Home from './components/Home';
 
 function App() {
+  
+
+
   return (
 
     <Router>

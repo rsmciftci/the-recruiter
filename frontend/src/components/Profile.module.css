@@ -1,0 +1,40 @@
+.border {
+
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+
+
+
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 100px;
+    padding-bottom: 100px;
+    /* padding-top: 100px; */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nameSurname {
+    padding-top: 15px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.profilePhoto {
+    width: 180px;
+    height: 171px;
+  }
+
+ .editButton {
+    width: 34px;
+    height: 31px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    margin-left : 500px;
+ } 

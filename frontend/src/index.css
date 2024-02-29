@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.divCenterMainComponenets {
+  padding-left: 300px;
+  padding-right: 300px;
+}

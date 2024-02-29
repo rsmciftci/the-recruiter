@@ -1,15 +1,22 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import styles from './TheNavbar.module.css'
+import { setLoggedin } from '../redux/candidateSlice';
 
 function TheNavbar() {
 
-  const candidateData = useSelector(state => state.candidateData);
+  function logOut(){
+    dispatch(setLoggedin());
+    window.location.href = '/';
+
+  }
+  const dispatch = useDispatch();
+  const candidateData = useSelector(state => state.candidateData.candidateData);
 
   return (
     <div>
@@ -46,7 +53,7 @@ function TheNavbar() {
             }
             {candidateData.login  ? 
               <Nav>
-                <Nav.Link onClick={() => localStorage.setItem("loggedin", false)} style={{ paddingLeft: 900 }}>Logout</Nav.Link>
+                <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link>
               </Nav>  : ""
             }
 

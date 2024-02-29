@@ -45,7 +45,9 @@ export const candidateSlice = createSlice({
             state.postcode = "";
             state.gender = "";
         }
-    },
+
+               
+    }
 })
 export const { setLoggedin, setCandidate, initailize } = candidateSlice.actions
 export default candidateSlice.reducer

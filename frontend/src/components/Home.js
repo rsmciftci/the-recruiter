@@ -2,7 +2,7 @@ import {  useSelector } from 'react-redux';
 import HomeLogout from './HomeLogout';
 
 function Home() {
-    const candidateData = useSelector(state => state.candidateData)
+    const candidateData = useSelector(state => state.candidateData.candidateData)
     return (
        <div>
         {candidateData.login ? "" : <HomeLogout/> }

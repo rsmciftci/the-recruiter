@@ -8,7 +8,7 @@ import { useState } from 'react';
 import candidateService from '../services/CandidateService';
 
 function HomeLogout() {
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const [loginData, setLoginData] = useState({
         email: "",
@@ -26,8 +26,8 @@ function HomeLogout() {
         candidateService.findUser(loginData)
             .then(response => {
                 delete response.data.password //TODO: change backend to remove password from response
-                dispatch(setCandidate(response.data))
-                dispatch(setLoggedin())
+                // dispatch(setCandidate(response.data))
+                // dispatch(setLoggedin())
 
             })
             .catch(error => {
@@ -65,7 +65,7 @@ function HomeLogout() {
                 <hr className={styles.horizontalline} />
                 <div className={styles.centerbutton}>
                     {/* TODO : remove onClick */}
-                    <Button variant="success" onClick={() => dispatch(setLoggedin())}>Create new account</Button>
+                    {/* <Button variant="success" onClick={() => dispatch(setLoggedin())}>Create new account</Button> */}
                 </div>
 
 

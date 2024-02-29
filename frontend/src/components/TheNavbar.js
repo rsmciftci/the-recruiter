@@ -1,17 +1,15 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { initailize } from '../redux/candidateSlice';
 
 import styles from './TheNavbar.module.css'
 
 function TheNavbar() {
 
-  const candidateData = useSelector(state => state.candidateData)
-  const dispatch = useDispatch();
+  const candidateData = useSelector(state => state.candidateData);
 
   return (
     <div>
@@ -19,7 +17,7 @@ function TheNavbar() {
         <Container>
 
           <Navbar.Brand href="/">
-            <img src='the-recruiter.png' width={132} height={30}></img>
+            <img src='the-recruiter.png' width={132} height={30} alt='the-recruiter-logo'></img>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

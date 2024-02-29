@@ -26,8 +26,8 @@ function HomeLogout() {
         candidateService.findUser(loginData)
             .then(response => {
                 delete response.data.password //TODO: change backend to remove password from response
-                localStorage.setItem("candidate", response.data)
-                localStorage.setItem("loggedin", true)
+                dispatch(setCandidate(response.data))
+                dispatch(setLoggedin())
 
             })
             .catch(error => {

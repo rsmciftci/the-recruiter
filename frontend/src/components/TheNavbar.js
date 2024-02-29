@@ -24,17 +24,19 @@ function TheNavbar() {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            {localStorage.getItem("loggedin") ?
+          
+
+            {candidateData.login  ?
               <Nav className="">
                 <Nav.Link href="/profile">Profile</Nav.Link>
               </Nav> : ""
             }
-            {localStorage.getItem("loggedin") ? 
+            {candidateData.login  ? 
               <Nav className="">
                 <Nav.Link href="#home2" className={styles.oneline}>Jobs Applied</Nav.Link>
               </Nav> : ""
             }
-            {localStorage.getItem("loggedin") ? 
+            {candidateData.login ? 
               <InputGroup className={styles.centersearch}>
                 <Form.Control
                   placeholder="Search Jobs"
@@ -44,7 +46,7 @@ function TheNavbar() {
                 />
               </InputGroup> : ""
             }
-            {localStorage.getItem("loggedin") ? 
+            {candidateData.login  ? 
               <Nav>
                 <Nav.Link onClick={() => localStorage.setItem("loggedin", false)} style={{ paddingLeft: 900 }}>Logout</Nav.Link>
               </Nav>  : ""

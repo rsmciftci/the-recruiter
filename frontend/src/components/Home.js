@@ -5,7 +5,7 @@ function Home() {
     const candidateData = useSelector(state => state.candidateData)
     return (
        <div>
-        {localStorage.getItem("loggedin") ? "" : <HomeLogout/> }
+        {candidateData.login ? "" : <HomeLogout/> }
        </div>
     );
 }

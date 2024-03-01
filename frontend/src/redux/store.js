@@ -10,7 +10,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
     candidateData : candidateSlice,
-    // profileData : profileSlice
+    // profilePage : profileSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

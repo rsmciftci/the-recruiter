@@ -6,6 +6,8 @@ const axiosInstance = axios.create({
 
 const candidateService = {
     findUser: (loginData) => axiosInstance.post("find-candidate/", loginData),
+    updateUser: (updatedData) => axiosInstance.put("candidate/"+updatedData.id, updatedData),
+
 }
 
 

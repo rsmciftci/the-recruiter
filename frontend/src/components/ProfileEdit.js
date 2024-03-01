@@ -1,6 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { closeProfileEdit } from '../redux/profileSlice';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import Row from 'react-bootstrap/esm/Row';
@@ -15,6 +15,11 @@ import ButtonMUI from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import candidateService from '../services/CandidateService';
+import { setCandidate } from '../redux/candidateSlice';
+import { Alert } from 'react-bootstrap';
+import { useEffect } from 'react';
+import AppliedJobs from './AppliedJobs';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -31,25 +36,58 @@ const VisuallyHiddenInput = styled('input')({
 
 function ProfileEdit() {
 
-    const [newProfile, setNetProfile] = useState({
-        photo: "",
-        cv: "",
-        name: "",
-        surname: "",
-        currentPosition: "",
-        email: "",
-        phone: "",
-        postCode: "",
-        town: "",
-        city: "",
+    const candidateData = useSelector(state => state.data.candidateData);
+    const [count, setCount] = useState(0);
+    const [responseStatus, setResponseStatus] = useState("");
+    const incrementCount = () => {
+        setCount(count + 1);
+    };
+
+
+    const [newProfile, setNewProfile] = useState({
+        id: candidateData.id,
+        first_name: candidateData.firstName,
+        surname: candidateData.surname,
+        current_position: candidateData.currentPosition,
+        email: candidateData.email,
+        phone: candidateData.phone,
+        postcode: candidateData.postcode,
+        town: candidateData.town,
+        city: candidateData.city,
+        gender: candidateData.gender,
+        password: ""
     });
+
+
+    const handleSubmit = (e) => {
+        console.log(newProfile)
+        e.preventDefault();
+        candidateService.updateUser(newProfile)
+            .then(response => {
+                delete response.data.password //TODO: change backend to remove password from response
+                dispatch(setCandidate(newProfile))
+                dispatch(closeProfileEdit())
+            })
+            .catch(error => {
+                // dispatch(closeProfileEdit())
+                // TODO: call alert function if response.data.status == 401
+
+                setResponseStatus(error.response.status)
+                incrementCount()
+
+                console.log(error.response.status)
+            });
+    };
+
+
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNetProfile({ ...newProfile, [name]: value });
+        setNewProfile({ ...newProfile, [name]: value });
+        console.log(newProfile.name)
 
     };
-
 
     const dispatch = useDispatch()
 
@@ -129,60 +167,67 @@ function ProfileEdit() {
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Name">
-                                <Form.Control type="text" value="Rasim" name="name" />
+                                <Form.Control type="text" value={newProfile.first_name} name="first_name" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Surname">
-                                <Form.Control type="text" value="CHIFTCHI" name="surname" />
+                                <Form.Control type="text" value={newProfile.surname} name="surname" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Current Position">
-                                <Form.Control type="text" value="Java Developer" name="current_position" />
+                                <Form.Control type="text" value={newProfile.current_position} name="current_position" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Email">
-                                <Form.Control type="email" value="rsmchiftchi@gmail.com" name="email" />
+                                <Form.Control type="email" value={newProfile.email} name="email" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Phone">
-                                <Form.Control type="text" value="07565391538" name="phone" />
+                                <Form.Control type="text" value={newProfile.phone} name="phone" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Post Code">
-                                <Form.Control type="text" value="E15 1UB" name="postcode" />
+                                <Form.Control type="text" value={newProfile.postcode} name="postcode" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="Town">
-                                <Form.Control type="text" value="Stratford" name="town" />
+                                <Form.Control type="text" value={newProfile.town} name="town" onChange={handleChange} />
                             </FloatingLabel>
                             <FloatingLabel
                                 className={styles.FloatingLabel}
                                 controlId="floatingInput"
                                 label="City">
-                                <Form.Control type="text" value="London" name="city" />
+                                <Form.Control type="text" value={newProfile.city} name="city" onChange={handleChange} />
                             </FloatingLabel>
-
+                            <FloatingLabel
+                                className={styles.passwordInput}
+                                controlId="floatingInput"
+                                label="Current Password">
+                                <Form.Control type="password" value={newProfile.password} name="password" onChange={handleChange} />
+                            </FloatingLabel>
                         </Row>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => dispatch(closeProfileEdit())} >Close</Button>
-                    <Button >Save</Button>
+                    <Button onClick={handleSubmit}>Update</Button>
 
                 </Modal.Footer>
             </Modal>
+
+            {(responseStatus == 401) ? <AppliedJobs /> : ""} # TODO: danger error
         </div>
     );
 }

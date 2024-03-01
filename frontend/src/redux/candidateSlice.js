@@ -10,7 +10,9 @@ const initialState = {
     city: "",
     town: "",
     postcode: "",
-    gender: ""
+    gender: "",
+    currentPosition : "",
+    id : ""
 
 }
 
@@ -31,6 +33,8 @@ export const candidateSlice = createSlice({
             state.town = action.payload.town;
             state.postcode = action.payload.postcode;
             state.gender = action.payload.gender;
+            state.currentPosition = action.payload.current_position;
+            state.id = action.payload.id;
         },
 
         initailize: (state) => {

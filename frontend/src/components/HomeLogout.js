@@ -16,6 +16,7 @@ function HomeLogout() {
         password: ""
     });
 
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value });

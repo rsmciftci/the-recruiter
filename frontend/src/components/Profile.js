@@ -3,7 +3,7 @@ import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
 import Table from "react-bootstrap/esm/Table";
 import { FaPencilAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from './Profile.module.css'
 import { openProfileEdit } from "../redux/profileSlice";
 
@@ -12,7 +12,7 @@ import Image from 'react-bootstrap/Image';
 function Profile() {
 
     const dispatch = useDispatch()
-
+    const candidateData = useSelector(state => state.data.candidateData);
 
     return (
 
@@ -29,25 +29,25 @@ function Profile() {
                         </Col>
                         <Table>
                             <tr>
-                                <td className={styles.nameSurname}>Rasim CHIFTCHI</td>
+                                <td className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</td>
                             </tr>
                             <tr>
-                                <td>Java Developer</td>
+                                <td>{candidateData.currentPosition}</td>
                             </tr>
                             <tr>
-                                <td>CV</td>
+                                <td>CV Link</td>
                             </tr>
                             <tr>
-                                <td>rsmchiftchi@gmail.com</td>
+                                <td>{candidateData.email}</td>
                             </tr>
                             <tr>
-                                <td>07565391538</td>
+                                <td>{candidateData.phone}</td>
                             </tr>
                             <tr>
-                                <td>E15 1UB</td>
+                                <td>{candidateData.postcode}</td>
                             </tr>
                             <tr>
-                                <td>Stratford, London</td>
+                                <td>{candidateData.town + ", " + candidateData.city}</td>
                             </tr>
                         </Table>
 

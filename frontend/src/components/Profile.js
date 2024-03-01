@@ -6,9 +6,9 @@ import { FaPencilAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './Profile.module.css'
 import { openProfileEdit } from "../redux/profileSlice";
-
 import Image from 'react-bootstrap/Image';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { default_female_photo, default_male_photo } from "../redux/candidateSlice";
 function Profile() {
 
     const dispatch = useDispatch()
@@ -17,15 +17,21 @@ function Profile() {
     return (
 
         <div>
-                       
+
             <div className={styles.border}>
                 <Container>
-                
-                    <FaPencilAlt className={styles.editButton} onClick={() => dispatch(openProfileEdit())}  />
+
+                    <FaPencilAlt className={styles.editButton} onClick={() => dispatch(openProfileEdit())} />
                     <Row>
 
                         <Col>
-                            <Image src="profile.png" roundedCircle className={styles.profilePhoto} />
+                            {(candidateData.photo) ? <Image src={candidateData.base_url + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
+                            {(!candidateData.photo && candidateData.gender == "female") ?
+                                <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
+                                :
+                                <Image src={default_male_photo} roundedCircle className={styles.profilePhoto} />
+                            }
+                
                         </Col>
                         <Table>
                             <tr>
@@ -35,7 +41,7 @@ function Profile() {
                                 <td>{candidateData.currentPosition}</td>
                             </tr>
                             <tr>
-                                <td>CV Link</td>
+                                <td>{candidateData.cv ? "CV" : "Please Upload Your CV"}</td>
                             </tr>
                             <tr>
                                 <td>{candidateData.email}</td>
@@ -55,7 +61,7 @@ function Profile() {
                 </Container>
                 <Container>
                 </Container>
-                
+
 
             </div>
 

@@ -1,4 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+
+const baseURL = "http://localhost:8000/static/"
+export const default_female_photo =  baseURL + "default_images/female.jpg"
+export const default_male_photo = baseURL + "default_images/male.jpg"
+
+
 // TODO: change it to candidateSlice
 const initialState = {
     login: false,
@@ -11,10 +17,14 @@ const initialState = {
     town: "",
     postcode: "",
     gender: "",
-    currentPosition : "",
-    id : ""
+    currentPosition: "",
+    id: "",
+    cv: "",
+    photo: ""
 
 }
+
+const baseUrl = ""
 
 export const candidateSlice = createSlice({
     name: "login",
@@ -35,6 +45,8 @@ export const candidateSlice = createSlice({
             state.gender = action.payload.gender;
             state.currentPosition = action.payload.current_position;
             state.id = action.payload.id;
+            state.cv = action.payload.cv;
+            state.photo = action.payload.photo;
         },
 
         initailize: (state) => {
@@ -48,10 +60,17 @@ export const candidateSlice = createSlice({
             state.town = "";
             state.postcode = "";
             state.gender = "";
+            state.cv = "";
+            state.photo = "";
+            state.default_female = "default_images/female.jpg";
+            state.default_male = "default_images/male.jpg";
+            state.base_url = baseURL;
         }
 
-               
+
     }
 })
+
+
 export const { setLoggedin, setCandidate, initailize } = candidateSlice.actions
 export default candidateSlice.reducer

@@ -10,7 +10,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
     candidateData : candidateSlice,
-    profileData : profileSlice
+    // profileData : profileSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)
@@ -18,6 +18,7 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 export const store = configureStore({
     reducer: {
         data: persistedReducer,
+        profilePage : profileSlice,
     },
 })
 

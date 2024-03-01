@@ -3,13 +3,12 @@ import FloatingLabel from 'react-bootstrap/esm/FloatingLabel';
 import styles from './Home.module.css'
 import Button from 'react-bootstrap/Button';
 import { setLoggedin, setCandidate } from '../redux/candidateSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import candidateService from '../services/CandidateService';
 
 function HomeLogout() {
     const dispatch = useDispatch();
-    const candidateData = useSelector(state => state.candidateData.candidateData) //TODO: why 2 candidateData ?
 
 
     const [loginData, setLoginData] = useState({
@@ -23,14 +22,12 @@ function HomeLogout() {
     };
 
     const handleSubmit = (e) => {
-        console.log(loginData)
         e.preventDefault();
         candidateService.findUser(loginData)
             .then(response => {
                 delete response.data.password //TODO: change backend to remove password from response
                 dispatch(setCandidate(response.data))
                 dispatch(setLoggedin())
-                console.log(candidateData.login)
              
 
             })

@@ -16,7 +16,7 @@ function TheNavbar() {
 
   }
   const dispatch = useDispatch();
-  const candidateData = useSelector(state => state.candidateData.candidateData);
+  const candidateData = useSelector(state => state.data.candidateData);
 
   return (
     <div>
@@ -38,7 +38,7 @@ function TheNavbar() {
             }
             {candidateData.login  ? 
               <Nav className="">
-                <Nav.Link href="#home2" className={styles.oneline}>Jobs Applied</Nav.Link>
+                <Nav.Link href="/applied-jobs" className={styles.oneline}>Jobs Applied</Nav.Link>
               </Nav> : ""
             }
             {candidateData.login ? 
@@ -47,7 +47,7 @@ function TheNavbar() {
                   placeholder="Search Jobs"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
-                  onKeyDown={(e) => { console.log(candidateData.login) }}
+                  onKeyDown={(e) => { console.log("Search by Enter") }}
                 />
               </InputGroup> : ""
             }

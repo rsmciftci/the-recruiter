@@ -19,6 +19,8 @@ class Candidate(models.Model):
     postcode = models.CharField(max_length=30, null=False, blank=False)
     current_position = models.CharField(max_length=30)
     gender = models.CharField(max_length=30, null=False, blank=False)
+    cv = models.FileField(upload_to= 'cvs/', null=True, blank=True)
+    photo = models.FileField(upload_to= 'photo/', null=True, blank=True)
 
 
 
@@ -72,3 +74,4 @@ class JobAdvert(models.Model):
     
 class CVTEST(models.Model): # TODO : remove    
     cv = models.FileField(upload_to= 'cvs/')
+    name = models.CharField(max_length=30)

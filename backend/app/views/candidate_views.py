@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ..models import Candidate
-from ..serializers.candidate_serializers import CandidateSerializer
+from ..serializers.candidate_serializers import CandidateSerializer, CandidateSerializerAllFields
 from rest_framework import serializers, status
 import hashlib
 import json
@@ -31,12 +31,8 @@ def add_candidate(request):
     candidate = CandidateSerializer(data=request.data)
     candidate.password_str_to_md5(data=request.data)
 
-    username = request.data.get("username")
     email = request.data.get("email")
     phone = request.data.get("phone")
-
-    if Candidate.objects.filter(username=username).exists():
-        raise serializers.ValidationError("Username already exists")
 
     if Candidate.objects.filter(email=email).exists():
         raise serializers.ValidationError("Email already exists")
@@ -53,8 +49,6 @@ def add_candidate(request):
 
 @api_view(["POST"])
 def find_candidate(request):
-    print("=============")
-    print(request.data)
     email = request.data.get("email")
     password = hashlib.md5(request.data.get("password").encode("utf-8")).hexdigest()
     try:
@@ -62,7 +56,7 @@ def find_candidate(request):
 
     except Candidate.DoesNotExist:
         return Response(candidate, status=status.HTTP_404_NOT_FOUND)
-    return Response(CandidateSerializer(candidate).data, status=status.HTTP_200_OK)
+    return Response(CandidateSerializerAllFields(candidate).data, status=status.HTTP_200_OK)
 
 
 @api_view(["PUT", "DELETE"])

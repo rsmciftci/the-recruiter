@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import company_view, recruiter_view, jobadvert_view, candidate_views
+from .views import company_view, recruiter_view, jobadvert_view, candidate_views, cvtest_views
 urlpatterns = [
     path('hello-world/', candidate_views.hello_world  , name='hello_world'),
     path('', candidate_views.ApiOverview , name='home'),
@@ -15,5 +15,7 @@ urlpatterns = [
     
     path('jobadvert/', jobadvert_view.add_jobadvert),
     path('jobadvert/<int:id>', jobadvert_view.update_or_delete_jobadvert),
+    
+    path('cvtest/', cvtest_views.add_cv),
     
 ]

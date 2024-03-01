@@ -9,20 +9,15 @@ class GenderEnum(Enum):
 
 class Candidate(models.Model):
     
-    username = models.CharField(unique=True, null=False, blank=False)
     first_name = models.CharField(max_length=30, null=False, blank=False)
     surname = models.CharField(max_length=30, null=False, blank=False)
     password = models.CharField(null=False, blank=False)
     email = models.EmailField(unique=True, null=False, blank=False)
-    date_of_birth = models.DateField(null=False, blank=False)
     phone = models.CharField(max_length=15, null=False, blank=False, unique=True)
     city = models.CharField(max_length=30, null=False, blank=False)
     town = models.CharField(max_length=30, null=False, blank=False)
     postcode = models.CharField(max_length=30, null=False, blank=False)
-    # TODO: GenderEnum needs to be serialized, find best method to do
-    # gender = models.CharField(
-    #     choices=[(tag, tag.value) for tag in GenderEnum], null=False, blank=False
-    # )
+    current_position = models.CharField(max_length=30)
     gender = models.CharField(max_length=30, null=False, blank=False)
 
 
@@ -74,3 +69,6 @@ class JobAdvert(models.Model):
     job_type = models.CharField(
        max_length=15, null=False, blank=False
     )
+    
+class CVTEST(models.Model): # TODO : remove    
+    cv = models.FileField(upload_to= 'cvs/')

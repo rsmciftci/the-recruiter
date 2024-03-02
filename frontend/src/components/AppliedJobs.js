@@ -1,53 +1,137 @@
-import React, { useEffect, useState } from 'react';
-import { Bounce, Slide, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Table from 'react-bootstrap/Table';
+import { MdCancel } from "react-icons/md";
+import styles from './AppliedJobs.module.css'
+import Pagination from 'react-bootstrap/Pagination';
 
-const AppliedJobs = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
+function AppliedJobs() {
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
+  // TODO: return last 270 job application
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  let active = 2;
+  let items = [];
+  for (let number = 1; number <= 18; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>,
+    );
+  }
 
-    const formData = new FormData();
-    formData.append('photo', selectedFile);
 
-    try {
-      const response = await fetch('http://localhost:8000/api/candidate-photo/23', {
-        method: 'PUT',
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log('File uploaded successfully!');
-      } else {
-        console.error('Failed to upload file');
-      }
-    } catch (error) {
-      console.error('Error uploading file:', error);
-    }
-  };
 
   return (
-
     <div>
-
-
-
-
-
-      <h2>Upload CV</h2>
-      <form onSubmit={handleSubmit}>
-        <label >Choose a CV:</label><br />
-        <input type="file" id="photo" name="photo" accept=".pdf,.doc,.docx,.png" onChange={handleFileChange} /><br /><br />
-        <button type="submit">Submit</button>
-      </form>
-
+      <div className={styles.mainDiv}>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Company</th>
+              <th>Role</th>
+              <th className={styles.widthdrawal}>Withdrawal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+          
+            <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+                 <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+            </tr>
+          
+          </tbody>
+        </Table>
+      </div>
+      <div className={styles.paginationDiv}>
+        <Pagination size="lg">{items}</Pagination>
+      </div>
     </div>
   );
-};
+}
 
 export default AppliedJobs;

@@ -16,9 +16,10 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import candidateService from '../services/CandidateService';
-import { default_female_photo, default_male_photo, setCandidate } from '../redux/candidateSlice';
+import { baseURL, default_female_photo, default_male_photo, setCVState, setCandidate, setPhotoState } from '../redux/candidateSlice';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CV from './CV';
 
 
 const VisuallyHiddenInput = styled('input')({
@@ -37,6 +38,24 @@ function ProfileEdit() {
 
     const candidateData = useSelector(state => state.data.candidateData);
 
+    const [photo, setPhoto] = useState(null);
+    const [cv, setCv] = useState(null);
+
+    const photoData = new FormData();
+    photoData.append('photo', photo);
+
+    const cvData = new FormData();
+    cvData.append('cv', cv);
+
+
+    const handlePhotoChange = (event) => {
+        setPhoto(event.target.files[0]);
+    };
+
+    const handleCVChange = (event) => {
+        setCv(event.target.files[0]);
+    }
+
 
 
     const [newProfile, setNewProfile] = useState({
@@ -52,6 +71,8 @@ function ProfileEdit() {
         gender: candidateData.gender,
         password: ""
     });
+
+
 
 
 
@@ -113,6 +134,42 @@ function ProfileEdit() {
             });
     };
 
+    const uploadPhoto = () => {
+        if (photo) {
+            candidateService.updatePhoto(photoData, candidateData.id)
+                .then(response => {
+                    dispatch(setPhotoState(response.data.photo)) // TODO: alert
+                })
+                .catch(error => {
+
+                    console.log("Smth went wrong")// TODO: alert
+
+                });
+
+        } else {
+            console.log("Please Choose A image") // TODO: alert
+        }
+
+    };
+
+    const uploadCV = () => {
+        if (cv) {
+            candidateService.updateCV(cvData, candidateData.id)
+                .then(response => {
+                    dispatch(setCVState(response.data.cv)) // TODO: alert
+                })
+                .catch(error => {
+
+                    console.log("Smth went wrong")// TODO: alert
+
+                });
+
+        } else {
+            console.log("Please Choose a CV") // TODO: alert
+        }
+
+    };
+
 
 
 
@@ -120,7 +177,6 @@ function ProfileEdit() {
         const { name, value } = e.target;
         setNewProfile({ ...newProfile, [name]: value });
         console.log(newProfile.name)
-
     };
 
     const dispatch = useDispatch()
@@ -151,11 +207,16 @@ function ProfileEdit() {
                         <Row>
 
                             <Col>
-                                {(candidateData.photo) ? <Image src={candidateData.base_url + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
-                                {(!candidateData.photo && candidateData.gender == "female") ?
+                                {(candidateData.photo) ? <Image src={baseURL + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
+                                {((!candidateData.photo) && candidateData.gender == "FEMALE") ?
                                     <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
                                     :
+                                    ""
+                                }
+                                {((!candidateData.photo) && candidateData.gender == "MALE") ?
                                     <Image src={default_male_photo} roundedCircle className={styles.profilePhoto} />
+                                    :
+                                    ""
                                 }
                             </Col>
 
@@ -169,9 +230,10 @@ function ProfileEdit() {
                                     variant="contained"
                                     tabIndex={-1}
                                     startIcon={<CloudUploadIcon />}
+                                    className={styles.buttonmuichooseimage}
                                 >
                                     Choose Photo
-                                    <VisuallyHiddenInput type="file" name="photo" value={newProfile.photo} onChange={handleChange} />
+                                    <VisuallyHiddenInput type="file" name="photo" id="photo" accept=".jpg,.png" onChange={handlePhotoChange} />
 
                                 </ButtonMUI>
                                 <ButtonMUI component="label"
@@ -179,14 +241,14 @@ function ProfileEdit() {
                                     variant="contained"
                                     tabIndex={-1}
                                     className={styles.buttonmuiupdate}
-
+                                    onClick={uploadPhoto}
                                 >Update</ButtonMUI>
                             </div>
 
 
 
                             <div className={styles.divCenter}>
-                                <FaFilePdf className={styles.pdfIcon} />
+                                {candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : <CV/>}
                                 <ButtonMUI
                                     component="label"
                                     role={undefined}
@@ -194,9 +256,10 @@ function ProfileEdit() {
                                     tabIndex={-1}
                                     startIcon={<CloudUploadIcon />}
                                     className={styles.buttonmui}
+
                                 >
                                     Choose CV
-                                    <VisuallyHiddenInput type="file" name="cv" value={newProfile.cv} onChange={handleChange} />
+                                    <VisuallyHiddenInput type="file" name="cv" accept=".pdf" value={newProfile.cv} onChange={handleCVChange} />
 
                                 </ButtonMUI>
                                 <ButtonMUI component="label"
@@ -204,6 +267,7 @@ function ProfileEdit() {
                                     variant="contained"
                                     tabIndex={-1}
                                     className={styles.buttonmuiupdate}
+                                    onClick={uploadCV}
 
                                 >Update</ButtonMUI>
 

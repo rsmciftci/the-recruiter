@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const baseURL = "http://localhost:8000/static/"
-export const default_female_photo =  baseURL + "default_images/female.jpg"
-export const default_male_photo = baseURL + "default_images/male.jpg"
+export const baseURL = "http://localhost:8000"
+export const default_female_photo =  baseURL + "/static/default_images/female.jpg"
+export const default_male_photo = baseURL + "/static/default_images/male.jpg"
 
 
 // TODO: change it to candidateSlice
@@ -49,6 +49,14 @@ export const candidateSlice = createSlice({
             state.photo = action.payload.photo;
         },
 
+        setPhotoState: (state, action) => {
+            state.photo = action.payload;
+        },
+
+        setCVState: (state, action) => {
+            state.cv = action.payload;
+        },
+
         initailize: (state) => {
             state.login = false;
             state.firstName = "";
@@ -64,7 +72,6 @@ export const candidateSlice = createSlice({
             state.photo = "";
             state.default_female = "default_images/female.jpg";
             state.default_male = "default_images/male.jpg";
-            state.base_url = baseURL;
         }
 
 
@@ -72,5 +79,5 @@ export const candidateSlice = createSlice({
 })
 
 
-export const { setLoggedin, setCandidate, initailize } = candidateSlice.actions
+export const { setLoggedin, setCandidate, initailize, setPhotoState, setCVState } = candidateSlice.actions
 export default candidateSlice.reducer

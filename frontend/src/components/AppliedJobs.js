@@ -13,11 +13,11 @@ const AppliedJobs = () => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('cv', selectedFile);
+    formData.append('photo', selectedFile);
 
     try {
-      const response = await fetch('http://localhost:8000/api/cvtest/', {
-        method: 'POST',
+      const response = await fetch('http://localhost:8000/api/candidate-photo/23', {
+        method: 'PUT',
         body: formData,
       });
 
@@ -41,8 +41,8 @@ const AppliedJobs = () => {
 
       <h2>Upload CV</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="cv">Choose a CV:</label><br />
-        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx,.png" onChange={handleFileChange} /><br /><br />
+        <label >Choose a CV:</label><br />
+        <input type="file" id="photo" name="photo" accept=".pdf,.doc,.docx,.png" onChange={handleFileChange} /><br /><br />
         <button type="submit">Submit</button>
       </form>
 

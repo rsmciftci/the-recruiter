@@ -8,7 +8,8 @@ import styles from './Profile.module.css'
 import { openProfileEdit } from "../redux/profileSlice";
 import Image from 'react-bootstrap/Image';
 import 'react-toastify/dist/ReactToastify.css';
-import { default_female_photo, default_male_photo } from "../redux/candidateSlice";
+import { baseURL, default_female_photo, default_male_photo } from "../redux/candidateSlice";
+import CV from "./CV";
 function Profile() {
 
     const dispatch = useDispatch()
@@ -25,11 +26,16 @@ function Profile() {
                     <Row>
 
                         <Col>
-                            {(candidateData.photo) ? <Image src={candidateData.base_url + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
-                            {(!candidateData.photo && candidateData.gender == "female") ?
+                            {(candidateData.photo) ? <Image src={baseURL + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
+                            {((!candidateData.photo) &&  candidateData.gender == "FEMALE") ?
                                 <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
                                 :
+                                ""
+                            }
+                            {((!candidateData.photo) &&  candidateData.gender == "MALE") ?
                                 <Image src={default_male_photo} roundedCircle className={styles.profilePhoto} />
+                                :
+                                ""
                             }
                 
                         </Col>
@@ -41,7 +47,8 @@ function Profile() {
                                 <td>{candidateData.currentPosition}</td>
                             </tr>
                             <tr>
-                                <td>{candidateData.cv ? "CV" : "Please Upload Your CV"}</td>
+                                {/* <td>{candidateData.cv ? baseURL + candidateData.cv   : "Please Upload Your CV"}</td> */}
+                                <td>{candidateData.cv ?  <CV url={baseURL + candidateData.cv }/>   : "Please Upload Your CV"}</td>
                             </tr>
                             <tr>
                                 <td>{candidateData.email}</td>

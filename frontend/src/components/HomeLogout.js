@@ -67,7 +67,7 @@ function HomeLogout() {
                 <hr className={styles.horizontalline} />
                 <div className={styles.centerbutton}>
                     {/* TODO : remove onClick */}
-                    <Button variant="success" >Create new account</Button>
+                    <Button variant="success" href='new-candidate'>Create new account</Button>
                 </div>
 
 

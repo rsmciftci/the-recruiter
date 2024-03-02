@@ -53,7 +53,8 @@ function TheNavbar() {
             }
             {candidateData.login  ? 
               <Nav>
-                <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link>
+                {/* TODO: initialize candidate data */}
+                <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link> 
               </Nav>  : ""
             }
 

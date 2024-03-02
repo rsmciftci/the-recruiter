@@ -149,6 +149,17 @@ function CreateNewCandidate() {
                     label="Password">
                     <Form.Control type="password" value={newProfile.password1} name="password1" onChange={handleChange} />
                 </FloatingLabel>
+                <FloatingLabel
+                    className={styles.FloatingLabel}
+                    controlId="floatingInput"
+                    label="Gender">
+                    <Form.Select aria-label="Default select example" name="gender" onChange={handleChange}>
+                        <option></option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </Form.Select >
+
+                </FloatingLabel>
                 <hr className={styles.horizontalLine}></hr>
 
                 <Button variant="primary">Sign Up</Button>

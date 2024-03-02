@@ -98,13 +98,14 @@ def update_or_delete_candidate(request, id):
 def add_photo(request, id):
     try:
         candidate = Candidate.objects.get(id=id)
-        print(candidate)
+     
 
     except Candidate.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = CandidateSerializerPhoto(candidate, request.data)
-
+    # TODO: check if it is in image format
+ 
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -121,6 +122,7 @@ def add_cv(request, id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = CandidateSerializerCV(candidate, request.data)
+    # TODO: check if it is in pdf format
 
     if serializer.is_valid():
         serializer.save()

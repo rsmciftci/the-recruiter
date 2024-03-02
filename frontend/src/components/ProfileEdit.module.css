@@ -1,36 +1,38 @@
 .divCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
- }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
- .UploadNewPhoto {
-    margin-top: 10px;
-    margin-bottom: 10px;
+.UploadNewPhoto {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 500px;
+  display: inline;
 
- }
+}
 
- .profilePhoto {
-    width: 180px;
-    height: 171px;
-    
-  }
+.profilePhoto {
+  width: 180px;
+  height: 171px;
 
-  .FloatingLabel {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    width: 245px;
-  }
+}
+
+.FloatingLabel {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 245px;
+}
 
 .UploadNewCV {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .pdfIcon {
-    margin-right: 20px;
-    width: 50px;
-    height: 40px;
+  margin-right: 20px;
+  width: 50px;
+  height: 40px;
 }
 
 .buttonmui {
@@ -40,10 +42,15 @@
 
 .buttonmuiupdate {
   width: 70px;
+  margin-left: 10px;
 }
 
 
 .buttonmuichooseimage {
   margin-right: 10px;
+}
+
+buttonGap {
+  margin: 7px;
 }
 

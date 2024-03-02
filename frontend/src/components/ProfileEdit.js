@@ -211,19 +211,22 @@ function ProfileEdit() {
 
 
                             <div className={styles.UploadNewPhoto}>
-                                <ButtonMUI
+                            
+                                    <ButtonMUI
 
-                                    component="label"
-                                    role={undefined}
-                                    variant="contained"
-                                    tabIndex={-1}
-                                    startIcon={<CloudUploadIcon />}
-                                    className={styles.buttonmuichooseimage}
-                                >
-                                    Choose Photo
-                                    <VisuallyHiddenInput type="file" name="photo" id="photo" accept=".jpg,.png" onChange={handlePhotoChange} />
+                                        component="label"
+                                        role={undefined}
+                                        variant="contained"
+                                        tabIndex={-1}
+                                        startIcon={<CloudUploadIcon />}
+                                        className={styles.buttonmuichooseimage}
+                                    >
+                                        Choose Photo
+                                        <VisuallyHiddenInput type="file" name="photo" id="photo" accept=".jpg,.png" onChange={handlePhotoChange} />
 
-                                </ButtonMUI>
+                                    </ButtonMUI>
+                                    <buttonGap className={styles.buttonGap} ></buttonGap>
+                              
                                 <ButtonMUI component="label"
                                     role={undefined}
                                     variant="contained"
@@ -236,7 +239,8 @@ function ProfileEdit() {
 
 
                             <div className={styles.divCenter}>
-                                {candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : <CV/>}
+                                {candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : <CV />}
+                                <buttonGap className={styles.buttonGap} ></buttonGap>
                                 <ButtonMUI
                                     component="label"
                                     role={undefined}
@@ -250,6 +254,7 @@ function ProfileEdit() {
                                     <VisuallyHiddenInput type="file" name="cv" accept=".pdf" value={newProfile.cv} onChange={handleCVChange} />
 
                                 </ButtonMUI>
+                                <buttonGap className={styles.buttonGap} ></buttonGap>
                                 <ButtonMUI component="label"
                                     role={undefined}
                                     variant="contained"

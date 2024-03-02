@@ -153,7 +153,7 @@ function CreateNewCandidate() {
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Gender">
-                    <Form.Select aria-label="Default select example" name="gender" onChange={handleChange}>
+                    <Form.Select aria-label="Default select example" value={newProfile.gender} name="gender" onChange={handleChange}>
                         <option></option>
                         <option value="MALE">Male</option>
                         <option value="FEMALE">Female</option>

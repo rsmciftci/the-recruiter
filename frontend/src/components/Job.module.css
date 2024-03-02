@@ -1,0 +1,39 @@
+.div1 {
+    background-color: rgba(242, 242, 242, 255);
+    min-height: 825px;
+}
+
+.div2 {
+    background-color: white;
+    margin-right: 310px;
+    margin-left: 310px;
+    border-radius: 10px;
+    min-height: 740px;
+   
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+
+}
+
+gap {
+    height: 40px;
+    display: block;
+}
+
+text {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+p {
+    text-indent: 50px;
+}
+

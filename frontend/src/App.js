@@ -6,6 +6,7 @@ import AppliedJobs from './components/AppliedJobs';
 import ProfilePage from './components/ProfilePage';
 import SearchJobs from './components/SearchJobs'
 import Job from './components/Job';
+import NewCandidate from './components/NewCandidate'
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
         <Route path='/applied-jobs' element={<AppliedJobs />} />
         <Route path='/search-jobs' element={<SearchJobs />} />
         <Route path='/job' element={<Job />} />
+        <Route path='/new-candidate' element={<NewCandidate />} />
       </Routes>
       <TheFooter />
     </Router>

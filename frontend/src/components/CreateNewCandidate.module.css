@@ -1,0 +1,35 @@
+
+  .FloatingLabel {
+    margin: 15px;
+    width: 245px;
+    display: inline-block;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 88vh;
+    background-color: rgba(242,242,242,255);
+  }
+
+  .InputDiv {
+    display: inline-block;
+    padding: 20px; 
+    border: black outset 2px;
+    border-radius: 10px;
+    width: 650px;
+    background-color: white;
+
+  }
+
+  .horizontalLine {
+    margin-right: 42px;
+    margin-left: 42px;
+  }
+
+
+
+
+  

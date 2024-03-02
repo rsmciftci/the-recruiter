@@ -8,7 +8,6 @@ import Col from 'react-bootstrap/esm/Col';
 import Image from 'react-bootstrap/esm/Image';
 import Table from 'react-bootstrap/esm/Table';
 import Form from 'react-bootstrap/Form';
-import { FaFilePdf } from "react-icons/fa6";
 import styles from './ProfileEdit.module.css'
 import FloatingLabel from 'react-bootstrap/esm/FloatingLabel';
 import ButtonMUI from '@mui/material/Button';
@@ -98,17 +97,6 @@ function ProfileEdit() {
         theme: "colored",
         transition: Slide,
     });
-    const successfullUpdate = () => toast.success('Your profile successfully updated.', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Slide,
-    });
 
 
 
@@ -129,7 +117,7 @@ function ProfileEdit() {
                 // dispatch(closeProfileEdit())
                 // TODO: call alert function if response.data.status == 401
 
-                (error.response.status == 401) ? notifyWrongPassword() : notifySomethingWentWrong()
+                (error.response.status === 401) ? notifyWrongPassword() : notifySomethingWentWrong()
 
             });
     };
@@ -208,12 +196,12 @@ function ProfileEdit() {
 
                             <Col>
                                 {(candidateData.photo) ? <Image src={baseURL + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
-                                {((!candidateData.photo) && candidateData.gender == "FEMALE") ?
+                                {((!candidateData.photo) && candidateData.gender === "FEMALE") ?
                                     <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
                                     :
                                     ""
                                 }
-                                {((!candidateData.photo) && candidateData.gender == "MALE") ?
+                                {((!candidateData.photo) && candidateData.gender === "MALE") ?
                                     <Image src={default_male_photo} roundedCircle className={styles.profilePhoto} />
                                     :
                                     ""

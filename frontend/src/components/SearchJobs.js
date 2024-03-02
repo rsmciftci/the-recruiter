@@ -1,5 +1,4 @@
 import Table from 'react-bootstrap/Table';
-import { FaCheck } from "react-icons/fa";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
 import styles from './SearchJobs.module.css'
 import Pagination from 'react-bootstrap/Pagination';

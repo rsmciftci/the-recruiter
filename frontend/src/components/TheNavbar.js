@@ -6,12 +6,13 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import styles from './TheNavbar.module.css'
-import { setLoggedin } from '../redux/candidateSlice';
+import { initailize, setLoggedin } from '../redux/candidateSlice';
 
 function TheNavbar() {
 
   function logOut(){
     dispatch(setLoggedin());
+    dispatch(initailize());
     window.location.href = '/';
 
   }

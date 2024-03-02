@@ -2,7 +2,12 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from ..models import Candidate
-from ..serializers.candidate_serializers import CandidateSerializer, CandidateSerializerAllFields
+from ..serializers.candidate_serializers import (
+    CandidateSerializer,
+    CandidateSerializerAllFields,
+    CandidateSerializerPhoto,
+    CandidateSerializerCV,
+)
 from rest_framework import serializers, status
 import hashlib
 import json
@@ -56,7 +61,9 @@ def find_candidate(request):
 
     except Candidate.DoesNotExist:
         return Response(candidate, status=status.HTTP_404_NOT_FOUND)
-    return Response(CandidateSerializerAllFields(candidate).data, status=status.HTTP_200_OK)
+    return Response(
+        CandidateSerializerAllFields(candidate).data, status=status.HTTP_200_OK
+    )
 
 
 @api_view(["PUT", "DELETE"])
@@ -85,3 +92,38 @@ def update_or_delete_candidate(request, id):
     elif request.method == "DELETE":
         candidate.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(["PUT"])
+def add_photo(request, id):
+    try:
+        candidate = Candidate.objects.get(id=id)
+        print(candidate)
+
+    except Candidate.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = CandidateSerializerPhoto(candidate, request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(status.HTTP_400_BAD_REQUEST)
+    
+@api_view(["PUT"])
+def add_cv(request, id):
+    try:
+        candidate = Candidate.objects.get(id=id)
+        print(candidate)
+
+    except Candidate.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = CandidateSerializerCV(candidate, request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(status.HTTP_400_BAD_REQUEST)

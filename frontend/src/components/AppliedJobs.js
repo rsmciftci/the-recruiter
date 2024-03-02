@@ -36,93 +36,93 @@ function AppliedJobs() {
               <td>1</td>
               <td>Plentific</td>
               <td><a href='url'>Python Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>2</td>
               <td>Monzo</td>
               <td><a href='url'>Tech Lead</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>3</td>
               <td>King</td>
               <td><a href='url'>Senior Java Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
-            </tr>
-          
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>1</td>
               <td>Plentific</td>
               <td><a href='url'>Python Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>2</td>
               <td>Monzo</td>
               <td><a href='url'>Tech Lead</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>3</td>
               <td>King</td>
               <td><a href='url'>Senior Java Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>1</td>
               <td>Plentific</td>
               <td><a href='url'>Python Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>2</td>
               <td>Monzo</td>
               <td><a href='url'>Tech Lead</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>3</td>
               <td>King</td>
               <td><a href='url'>Senior Java Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
-                 <tr>
+            <tr>
               <td>1</td>
               <td>Plentific</td>
               <td><a href='url'>Python Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>2</td>
               <td>Monzo</td>
               <td><a href='url'>Tech Lead</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
             <tr>
               <td>3</td>
               <td>King</td>
               <td><a href='url'>Senior Java Developer</a></td>
-              <td className={styles.widthdrawal}><MdCancel size={20} /></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
             </tr>
+            <tr>
+              <td>1</td>
+              <td>Plentific</td>
+              <td><a href='url'>Python Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Monzo</td>
+              <td><a href='url'>Tech Lead</a></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>King</td>
+              <td><a href='url'>Senior Java Developer</a></td>
+              <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
+            </tr>
+        
           
           </tbody>
         </Table>

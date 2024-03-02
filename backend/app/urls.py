@@ -7,6 +7,7 @@ urlpatterns = [
     path('find-candidate/', candidate_views.find_candidate, name='find_candidate'),
     path('candidate/<int:id>', candidate_views.update_or_delete_candidate, name='update_or_delete_candidate'),
     path('candidate-photo/<int:id>', candidate_views.add_photo, name='add_photo'),
+    path('candidate-cv/<int:id>', candidate_views.add_cv, name='add_cv'),
     
     path("company/", company_view.add_company ),
     path("company/<int:id>", company_view.update_or_delete_company, name="update_or_delete_company"),

@@ -1,0 +1,26 @@
+.mainDiv {
+    margin-top: 40px;
+    margin-right: 310px;
+    margin-left: 310px;
+    height: 670px;
+
+}
+
+.apply {
+    text-align: center;
+    width: 120px;
+}
+
+
+.paginationDiv {
+    margin-top: 20px;
+    padding-top: 15px;
+    margin-right: 310px;
+    margin-left: 310px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+

@@ -41,7 +41,7 @@ class Company(models.Model):
 
 class Recruiter(models.Model):
     
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, to_field="name", on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30, null=False, blank=False)
     surname = models.CharField(max_length=30, null=False, blank=False)
     phone = models.CharField(max_length=15, null=False, blank=False, unique=True)
@@ -54,7 +54,7 @@ class Recruiter(models.Model):
     #     choices=[(tag, tag.value) for tag in GenderEnum],
     #     null=False,
     #     blank=False,
-    # )
+    #)
 
 
 class JobAdvert(models.Model):

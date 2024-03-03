@@ -60,7 +60,7 @@ class Recruiter(models.Model):
 class JobAdvert(models.Model):
     
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, to_field="name", on_delete=models.CASCADE)
     candidate = models.ManyToManyField(Candidate, blank=True)
 
     title = models.CharField(max_length=100, null=False, blank=False)

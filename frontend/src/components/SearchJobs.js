@@ -1,26 +1,56 @@
 import Table from 'react-bootstrap/Table';
 import { IoMdCheckmarkCircleOutline } from "react-icons/io"
 import styles from './SearchJobs.module.css'
+import { useParams } from 'react-router-dom';
+import jobService from '../services/JobService'
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Pagination from 'react-bootstrap/Pagination';
 
 function SearchJobs() {
 
-  // TODO: return last 270 job application
+  let { title } = useParams()
+  const [jobs, setJobs] = useState([""])
+  const candidate = useSelector(state => state.data.candidateData);
+  const jobSearchText = useSelector(state => state.data.jobSearchSlice.jobSearchText);
 
-  let active = 2;
-  let items = [];
-  for (let number = 1; number <= 18; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>,
-    );
+
+  const numberOfItemsPerPage = 15;
+
+  const [activePage, setActivePage ] = useState(1);
+  const maxPage = Math.ceil(jobs.length/numberOfItemsPerPage)
+
+  function increasePage(input){
+    ((activePage < maxPage)) ? setActivePage(activePage + 1) : setActivePage(activePage);           
   }
 
+  function decreasePage(input){
+    ((activePage > 1)) ? setActivePage(activePage - 1) : setActivePage(activePage);           
+  }
+
+
+  useEffect(() => {
+    jobService.findJobsByTitle(jobSearchText).then(response => {
+
+      const filterJobs = response.data.filter(data => {
+
+        return !data.candidate.includes(candidate.id)
+      });
+
+      setJobs(filterJobs)
+
+    }
+    ).catch(error => {
+      //  TODO: throw Error here
+      console.log("error")
+    })
+
+  }, []);
 
 
   return (
     <div>
+      {console.log(jobSearchText)}
       <div className={styles.mainDiv}>
         <Table striped bordered hover>
           <thead>
@@ -28,125 +58,37 @@ function SearchJobs() {
               <th>#</th>
               <th>Company</th>
               <th>Role</th>
+              <th>Salary</th>
               <th>Location</th>
-              <></>
-              <th className={styles.apply}>Apply</th>
+              <th>Job Type</th>
+              <th className={styles.applyColumn}>Apply</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td>London</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td>Amsterdam</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td>Dublin</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td>London</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td>Amsterdam</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td>Dublin</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td>London</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td>Amsterdam</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td>Dublin</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td>London</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td>Amsterdam</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td>Dublin</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Plentific</td>
-              <td><a href='url'>Python Developer</a></td>
-              <td>London</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Monzo</td>
-              <td><a href='url'>Tech Lead</a></td>
-              <td>Amsterdam</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>King</td>
-              <td><a href='url'>Senior Java Developer</a></td>
-              <td>Dublin</td>
-              <td className={styles.apply}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
-            </tr>
-
+            {jobs.slice((activePage * numberOfItemsPerPage - numberOfItemsPerPage ), (activePage * numberOfItemsPerPage)).map((item, index) => (
+              <tr>
+                <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
+                <td>{item.company}</td>
+                <td><a href='url'>{item.title}</a></td>
+                <td>{item.salary}</td>
+                <td>{item.city}</td>
+                <td>{item.job_type}</td>
+                <td className={styles.applyColumn}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
+              </tr>
+            ))}
 
 
           </tbody>
         </Table>
       </div>
       <div className={styles.paginationDiv}>
-        <Pagination size="lg">{items}</Pagination>
+      <Pagination>
+          <Pagination.First  onClick={() => setActivePage(1)} />
+          <Pagination.Prev  onClick={() =>decreasePage()} />
+          <Pagination.Item active>{activePage}</Pagination.Item>
+          <Pagination.Next onClick={() =>increasePage()}/>
+          <Pagination.Last onClick={() => setActivePage(maxPage)} />
+        </Pagination>
       </div>
     </div>
   );

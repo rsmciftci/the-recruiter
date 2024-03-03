@@ -1,22 +1,31 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import {  useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 
 import styles from './TheNavbar.module.css'
 import { initailize, setLoggedin } from '../redux/candidateSlice';
 import { initailize_appliedJobs } from '../redux/appliedJobsSlice';
+import { useState } from 'react';
+import { setJobSearchText } from '../redux/jobSearchSlice';
 
 function TheNavbar() {
 
-  function logOut(){
+  function logOut() {
     dispatch(setLoggedin());
     dispatch(initailize());
     dispatch(initailize_appliedJobs());
     window.location.href = '/';
 
+  }
+
+  
+
+  function searchJob(url) {
+    if (url === "Enter" || url === "NumpadEnter")
+     {  window.location.href = "search-jobs"}
   }
   const dispatch = useDispatch();
   const candidateData = useSelector(state => state.data.candidateData);
@@ -32,34 +41,35 @@ function TheNavbar() {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          
 
-            {candidateData.login  ?
+
+            {candidateData.login ?
               <Nav className="">
                 <Nav.Link href="/profile">Profile</Nav.Link>
               </Nav> : ""
             }
-            {candidateData.login  ? 
+            {candidateData.login ?
               <Nav className="">
                 <Nav.Link href="/applied-jobs" className={styles.oneline}>Jobs Applied</Nav.Link>
               </Nav> : ""
             }
-            {candidateData.login ? 
+            {candidateData.login ?
               <InputGroup className={styles.centersearch}>
                 <Form.Control
                   placeholder="Search Jobs"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
-                  onChange={(e) => { console.log(e.code) }}
-                  onKeyUp={(e) => { console.log(e.code) }}
+                  onChange={(e) => dispatch(setJobSearchText(e.target.value))}
+                  
+                  onKeyUp={(e) => { searchJob(e.code)}}
                 />
               </InputGroup> : ""
             }
-            {candidateData.login  ? 
+            {candidateData.login ?
               <Nav>
                 {/* TODO: initialize candidate data */}
-                <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link> 
-              </Nav>  : ""
+                <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link>
+              </Nav> : ""
             }
 
           </Navbar.Collapse>

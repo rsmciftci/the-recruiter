@@ -56,10 +56,10 @@ def update_or_delete_jobadvert(request, id):
         return Response(status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(["PUT"])
-def update_job_for_adding_candidate(request):
+def update_job_for_adding_candidate(request,job_id,candidate_id):
     try:
-        candidate = Candidate.objects.get(id=request.data.candidate_id)
-        JobAdvert.objects.get(id=request.data.job_id).candidate.add(candidate) 
+        candidate = Candidate.objects.get(id=candidate_id)
+        JobAdvert.objects.get(id=job_id).candidate.add(candidate) 
      
     except JobAdvert.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)

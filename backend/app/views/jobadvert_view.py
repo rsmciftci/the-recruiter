@@ -10,22 +10,11 @@ from ..models import Candidate
 @api_view(["POST"])
 def add_jobadvert(request):
     serializer = JobAdvertSerializer(data=request.data)
-    print("========================")
-    print(serializer)
     if serializer.is_valid():
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
-    
-def get_job_adverts_by_candidate_id(candidate_id):
-    try:
-        candidate = Candidate.objects.get(id=candidate_id)
-        job_adverts = candidate.jobadvert_set.all().order_by('-publish_date')
-        return job_adverts
-    except Candidate.DoesNotExist:
-        return None
-
 
 @api_view(["GET"])
 def find_jobs_applied_by_candidate(request, candidate_id):
@@ -37,7 +26,16 @@ def find_jobs_applied_by_candidate(request, candidate_id):
     serialized_data = serializer.data
     
     return Response(serialized_data,status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def find_jobs_applied_by_title(request, title):
     
+    job_adverts = JobAdvert.objects.filter(title__icontains=title)
+    serializer = JobAdvertSerializerWithoutCandidateAndRecruiter(job_adverts, many=True)
+    
+    return Response(serializer.data,status=status.HTTP_302_FOUND)
+    
+   
 
 @api_view(["DELETE", "PUT"])
 def update_or_delete_jobadvert(request, id):

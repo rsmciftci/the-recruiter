@@ -28,9 +28,11 @@ urlpatterns = [
     ),
     path("recruiter/", recruiter_view.add_recruiter),
     path("recruiter/<int:id>", recruiter_view.update_or_delete_recruiter),
+    
     path("jobadvert/", jobadvert_view.add_jobadvert),
     path("jobadvert/<int:id>", jobadvert_view.update_or_delete_jobadvert),
     path("jobadvert-by-candidateid/<int:candidate_id>", jobadvert_view.find_jobs_applied_by_candidate),
+    path("jobadvert-by-title/<str:title>", jobadvert_view.find_jobs_applied_by_title),
     
     path("cvtest/", cvtest_views.add_cv),
     path("test/", test_view.my_view),

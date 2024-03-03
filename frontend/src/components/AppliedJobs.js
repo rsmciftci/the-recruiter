@@ -55,7 +55,7 @@ function AppliedJobs() {
           <tbody>
             {appliedJobs.slice((activePage * numberOfItemsPerPage - numberOfItemsPerPage ), (activePage * numberOfItemsPerPage)).map((item, index) => (
               <tr>
-                <td>{index + 1}</td>
+                <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
                 <td>{item.company}</td>
                 <td><a href='url'>{item.title}</a></td>
                 <td>{item.salary}</td>

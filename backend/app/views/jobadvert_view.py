@@ -54,3 +54,25 @@ def update_or_delete_jobadvert(request, id):
             serializer.save()
             return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(["PUT"])
+def update_job_for_adding_candidate(request):
+    try:
+        candidate = Candidate.objects.get(id=request.data.candidate_id)
+        JobAdvert.objects.get(id=request.data.job_id).candidate.add(candidate) 
+     
+    except JobAdvert.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+     
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(["PUT"])
+def update_job_for_delete_candidate(request):
+    try:
+        candidate = Candidate.objects.get(id="24")
+        JobAdvert.objects.get(id="95").candidate.remove(candidate)
+     
+    except JobAdvert.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+     
+    return Response(status=status.HTTP_200_OK)

@@ -31,7 +31,7 @@ def find_jobs_applied_by_candidate(request, candidate_id):
 def find_jobs_applied_by_title(request, title):
     
     job_adverts = JobAdvert.objects.filter(title__icontains=title)
-    serializer = JobAdvertSerializerWithoutCandidateAndRecruiter(job_adverts, many=True)
+    serializer = JobAdvertSerializer(job_adverts, many=True)
     
     return Response(serializer.data,status=status.HTTP_302_FOUND)
     

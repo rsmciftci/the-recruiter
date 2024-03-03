@@ -15,18 +15,47 @@ function SearchJobs() {
   const jobSearchText = useSelector(state => state.data.jobSearchSlice.jobSearchText);
 
 
+
   const numberOfItemsPerPage = 15;
 
-  const [activePage, setActivePage ] = useState(1);
-  const maxPage = Math.ceil(jobs.length/numberOfItemsPerPage)
+  const [activePage, setActivePage] = useState(1);
+  const maxPage = Math.ceil(jobs.length / numberOfItemsPerPage)
 
-  function increasePage(input){
-    ((activePage < maxPage)) ? setActivePage(activePage + 1) : setActivePage(activePage);           
+  function increasePage(input) {
+    ((activePage < maxPage)) ? setActivePage(activePage + 1) : setActivePage(activePage);
   }
 
-  function decreasePage(input){
-    ((activePage > 1)) ? setActivePage(activePage - 1) : setActivePage(activePage);           
+  function decreasePage(input) {
+    ((activePage > 1)) ? setActivePage(activePage - 1) : setActivePage(activePage);
   }
+
+  function removeAppliedJob(data, job_id) {
+
+    const filterJobs = data.filter(data => {
+
+      return !(data.id == job_id)
+    });
+
+    setJobs(filterJobs)
+
+
+  }
+
+  function applyTheJob(job_id) {
+    console.log(job_id)
+    jobService.appJob(job_id, candidate.id)
+      .then(response => {
+
+        removeAppliedJob(jobs, job_id)
+
+      })
+      .catch(error => {
+        // TODO: toast
+      });
+    
+  }
+
+
 
 
   useEffect(() => {
@@ -50,7 +79,6 @@ function SearchJobs() {
 
   return (
     <div>
-      {console.log(jobSearchText)}
       <div className={styles.mainDiv}>
         <Table striped bordered hover>
           <thead>
@@ -65,7 +93,7 @@ function SearchJobs() {
             </tr>
           </thead>
           <tbody>
-            {jobs.slice((activePage * numberOfItemsPerPage - numberOfItemsPerPage ), (activePage * numberOfItemsPerPage)).map((item, index) => (
+            {jobs.slice((activePage * numberOfItemsPerPage - numberOfItemsPerPage), (activePage * numberOfItemsPerPage)).map((item, index) => (
               <tr>
                 <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
                 <td>{item.company}</td>
@@ -73,7 +101,7 @@ function SearchJobs() {
                 <td>{item.salary}</td>
                 <td>{item.city}</td>
                 <td>{item.job_type}</td>
-                <td className={styles.applyColumn}><IoMdCheckmarkCircleOutline color='green' size={20} /></td>
+                <td className={styles.applyColumn}><IoMdCheckmarkCircleOutline color='green' onClick={() => applyTheJob(item.id)} size={20} /></td>
               </tr>
             ))}
 
@@ -82,11 +110,11 @@ function SearchJobs() {
         </Table>
       </div>
       <div className={styles.paginationDiv}>
-      <Pagination>
-          <Pagination.First  onClick={() => setActivePage(1)} />
-          <Pagination.Prev  onClick={() =>decreasePage()} />
+        <Pagination>
+          <Pagination.First onClick={() => setActivePage(1)} />
+          <Pagination.Prev onClick={() => decreasePage()} />
           <Pagination.Item active>{activePage}</Pagination.Item>
-          <Pagination.Next onClick={() =>increasePage()}/>
+          <Pagination.Next onClick={() => increasePage()} />
           <Pagination.Last onClick={() => setActivePage(maxPage)} />
         </Pagination>
       </div>

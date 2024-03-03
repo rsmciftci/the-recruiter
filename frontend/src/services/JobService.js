@@ -8,6 +8,8 @@ const axiosInstance = axios.create({
 const jobService = {
 
     findJobsByTitle: (title) => axiosInstance.get("jobadvert-by-title/" + title),
+    appJob: (job_id,candidate_id) => axiosInstance.put("jobadvert-apply/"+job_id+"/"+candidate_id),
+
 }
 
 

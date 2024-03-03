@@ -3,8 +3,8 @@ import { MdCancel } from "react-icons/md";
 import Pagination from 'react-bootstrap/Pagination';
 import candidateService from '../services/CandidateService';
 import { useDispatch, useSelector } from 'react-redux';
-import { initailize_appliedJobs, setAppliedJobs } from '../redux/appliedJobsSlice';
-import { Component, useEffect, useState } from 'react';
+import {  setAppliedJobs } from '../redux/appliedJobsSlice';
+import {  useEffect, useState } from 'react';
 import styles from './AppliedJobs.module.css'
 
 function AppliedJobs() {
@@ -35,18 +35,6 @@ function AppliedJobs() {
     })
 
   }, []);
-
-  let active = 2;
-  let items = [];
-  for (let number = 1; number <= 18; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>,
-    );
-  }
-
-
 
   return (
     <div>

@@ -50,7 +50,8 @@ function TheNavbar() {
                   placeholder="Search Jobs"
                   aria-label="Username"
                   aria-describedby="basic-addon1"
-                  onKeyDown={(e) => { console.log("Search by Enter") }}
+                  onChange={(e) => { console.log(e.code) }}
+                  onKeyUp={(e) => { console.log(e.code) }}
                 />
               </InputGroup> : ""
             }

@@ -7,12 +7,14 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 import styles from './TheNavbar.module.css'
 import { initailize, setLoggedin } from '../redux/candidateSlice';
+import { initailize_appliedJobs } from '../redux/appliedJobsSlice';
 
 function TheNavbar() {
 
   function logOut(){
     dispatch(setLoggedin());
     dispatch(initailize());
+    dispatch(initailize_appliedJobs());
     window.location.href = '/';
 
   }

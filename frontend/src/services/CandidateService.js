@@ -12,6 +12,8 @@ const candidateService = {
     updatePhoto: (data, id) => axiosInstance.put("candidate-photo/" + id, data),
     updateCV: (data, id) => axiosInstance.put("candidate-cv/" + id, data),
 
+    findAppliedJobs: (candidate_id) => axiosInstance.get("jobadvert-by-candidateid/" + candidate_id),
+
 }
 
 

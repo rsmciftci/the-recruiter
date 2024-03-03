@@ -69,6 +69,7 @@ export const candidateSlice = createSlice({
             state.postcode = "";
             state.gender = "";
             state.cv = "";
+            state.id = "";
             state.photo = "";
             state.default_female = "default_images/female.jpg";
             state.default_male = "default_images/male.jpg";

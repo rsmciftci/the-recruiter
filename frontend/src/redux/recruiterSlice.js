@@ -22,7 +22,7 @@ export const recruiterSlice = createSlice({
     name: "recruiterSlice",
     initialState,
     reducers: {
-        setLoggedin: (state) => {
+        updateRecruiterLogin: (state) => {
             state.login = !state.login
         },
         setRecruiter: (state, action) => {
@@ -50,5 +50,5 @@ export const recruiterSlice = createSlice({
 })
 
 
-export const { setLoggedin, setRecruiter, initailize } = recruiterSlice.actions
+export const { updateRecruiterLogin, setRecruiter, initailize } = recruiterSlice.actions
 export default recruiterSlice.reducer

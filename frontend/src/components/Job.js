@@ -30,16 +30,16 @@ function Job() {
     function applyTheJob(job_id) {
 
         jobService.appJob(job_id, candidate.id)
-          .then(response => {
-    
-            setJobApplied(true)
+            .then(response => {
+
+                setJobApplied(true)
                 // TODO : toast succesfully applied
-          })
-          .catch(error => {
-                 // TODO : toast sthng went wrong
-          });
-        
-      }
+            })
+            .catch(error => {
+                // TODO : toast sthng went wrong
+            });
+
+    }
 
     return (
         <div className={styles.div1}>
@@ -70,7 +70,8 @@ function Job() {
 
                 <hr></hr>
                 <div className={styles.centerApplyButton}>
-                    {((action === "apply") && !jobAplied)? <Button variant="secondary" onClick={() => applyTheJob(job.id)}>Apply</Button> : ""}
+                    {((action === "apply") && !jobAplied) ? <Button variant="secondary"  onClick={() => applyTheJob(job.id)}>Apply</Button> : 
+                    <Button variant="secondary" disabled >Apply</Button>}
                 </div>
 
 

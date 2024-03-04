@@ -27,41 +27,43 @@ function Profile() {
 
                         <Col>
                             {(candidateData.photo) ? <Image src={baseURL + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
-                            {((!candidateData.photo) &&  candidateData.gender === "FEMALE") ?
+                            {((!candidateData.photo) && candidateData.gender === "FEMALE") ?
                                 <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
                                 :
                                 ""
                             }
-                            {((!candidateData.photo) &&  candidateData.gender === "MALE") ?
+                            {((!candidateData.photo) && candidateData.gender === "MALE") ?
                                 <Image src={default_male_photo} roundedCircle className={styles.profilePhoto} />
                                 :
                                 ""
                             }
-                
+
                         </Col>
                         <Table>
-                            <tr>
-                                <td className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</td>
-                            </tr>
-                            <tr>
-                                <td>{candidateData.currentPosition}</td>
-                            </tr>
-                            <tr>
-                                {/* <td>{candidateData.cv ? baseURL + candidateData.cv   : "Please Upload Your CV"}</td> */}
-                                <td>{candidateData.cv ?  <CV url={baseURL + candidateData.cv }/>   : "Please Upload Your CV"}</td>
-                            </tr>
-                            <tr>
-                                <td>{candidateData.email}</td>
-                            </tr>
-                            <tr>
-                                <td>{candidateData.phone}</td>
-                            </tr>
-                            <tr>
-                                <td>{candidateData.postcode}</td>
-                            </tr>
-                            <tr>
-                                <td>{candidateData.town + ", " + candidateData.city}</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</td>
+                                </tr>
+                                <tr>
+                                    <td>{candidateData.currentPosition}</td>
+                                </tr>
+                                <tr>
+                                    {/* <td>{candidateData.cv ? baseURL + candidateData.cv   : "Please Upload Your CV"}</td> */}
+                                    <td>{candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : "Please Upload Your CV"}</td>
+                                </tr>
+                                <tr>
+                                    <td>{candidateData.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>{candidateData.phone}</td>
+                                </tr>
+                                <tr>
+                                    <td>{candidateData.postcode}</td>
+                                </tr>
+                                <tr>
+                                    <td>{candidateData.town + ", " + candidateData.city}</td>
+                                </tr>
+                            </tbody>
                         </Table>
 
                     </Row>

@@ -24,8 +24,8 @@ function Profile() {
 
                     <FaPencilAlt className={styles.editButton} onClick={() => dispatch(openProfileEdit())} />
                     <Row>
-
                         <Col>
+
                             {(candidateData.photo) ? <Image src={baseURL + candidateData.photo} roundedCircle className={styles.profilePhoto} /> : ""}
                             {((!candidateData.photo) && candidateData.gender === "FEMALE") ?
                                 <Image src={default_female_photo} roundedCircle className={styles.profilePhoto} />
@@ -38,38 +38,29 @@ function Profile() {
                                 ""
                             }
 
+
                         </Col>
-                        <Table>
-                            <tbody>
-                                <tr>
-                                    <td className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</td>
-                                </tr>
-                                <tr>
-                                    <td>{candidateData.currentPosition}</td>
-                                </tr>
-                                <tr>
-                                    {/* <td>{candidateData.cv ? baseURL + candidateData.cv   : "Please Upload Your CV"}</td> */}
-                                    <td>{candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : "Please Upload Your CV"}</td>
-                                </tr>
-                                <tr>
-                                    <td>{candidateData.email}</td>
-                                </tr>
-                                <tr>
-                                    <td>{candidateData.phone}</td>
-                                </tr>
-                                <tr>
-                                    <td>{candidateData.postcode}</td>
-                                </tr>
-                                <tr>
-                                    <td>{candidateData.town + ", " + candidateData.city}</td>
-                                </tr>
-                            </tbody>
-                        </Table>
+
+
+
+
 
                     </Row>
+                    <div className={styles.InfoDiv}>
+                        <p className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</p>
+                        <p>{candidateData.currentPosition}</p>
+
+                        <p>{candidateData.email}</p>
+                        <p>{candidateData.phone}</p>
+                        <p>{candidateData.postcode}</p>
+                        <p>{candidateData.town + ", " + candidateData.city}</p>
+
+                    </div>
+
+
+
                 </Container>
-                <Container>
-                </Container>
+
 
 
             </div>

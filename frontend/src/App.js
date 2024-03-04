@@ -7,7 +7,7 @@ import ProfilePage from './components/ProfilePage';
 import SearchJobs from './components/SearchJobs'
 import Job from './components/Job';
 import NewCandidate from './components/NewCandidate'
-import RecruiterPage from './components/RecruiterPage';
+import RecruiterPage from './components/recruiter/RecruiterPage';
 
 function App() {
   

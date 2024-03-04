@@ -26,7 +26,6 @@ export const recruiterSlice = createSlice({
             state.login = !state.login
         },
         setRecruiter: (state, action) => {
-            state.login = action.payload.login;
             state.first_name = action.payload.first_name;
             state.surname = action.payload.surname;
             state.phone = action.payload.phone;

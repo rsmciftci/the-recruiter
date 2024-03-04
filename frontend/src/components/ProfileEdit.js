@@ -211,7 +211,8 @@ function ProfileEdit() {
 
 
                             <div className={styles.UploadNewPhoto}>
-                            
+
+                                <div className={styles.divInlineChoosePhoto}>
                                     <ButtonMUI
 
                                         component="label"
@@ -225,44 +226,52 @@ function ProfileEdit() {
                                         <VisuallyHiddenInput type="file" name="photo" id="photo" accept=".jpg,.png" onChange={handlePhotoChange} />
 
                                     </ButtonMUI>
-                                    <buttonGap className={styles.buttonGap} ></buttonGap>
-                              
-                                <ButtonMUI component="label"
-                                    role={undefined}
-                                    variant="contained"
-                                    tabIndex={-1}
-                                    className={styles.buttonmuiupdate}
-                                    onClick={uploadPhoto}
-                                >Update</ButtonMUI>
+                                </div>
+
+
+                                <div className={styles.divInline}>
+                                    <ButtonMUI component="label"
+                                        role={undefined}
+                                        variant="contained"
+                                        tabIndex={-1}
+                                        className={styles.buttonmuiupdate}
+                                        onClick={uploadPhoto}
+                                    >Update</ButtonMUI>
+                                </div>
                             </div>
 
 
 
                             <div className={styles.divCenter}>
-                                {candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : <CV />}
-                                <buttonGap className={styles.buttonGap} ></buttonGap>
-                                <ButtonMUI
-                                    component="label"
-                                    role={undefined}
-                                    variant="contained"
-                                    tabIndex={-1}
-                                    startIcon={<CloudUploadIcon />}
-                                    className={styles.buttonmui}
+                                <div className={styles.divInlineCV}>
+                                    {candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : <CV />}
+                                </div>
+                                <div className={styles.divInlineChooseCV}>
+                                    <ButtonMUI
+                                        component="label"
+                                        role={undefined}
+                                        variant="contained"
+                                        tabIndex={-1}
+                                        startIcon={<CloudUploadIcon />}
+                                        className={styles.buttonmui}
 
-                                >
-                                    Choose CV
-                                    <VisuallyHiddenInput type="file" name="cv" accept=".pdf" value={newProfile.cv} onChange={handleCVChange} />
+                                    >
+                                        Choose CV
+                                        <VisuallyHiddenInput type="file" name="cv" accept=".pdf" value={newProfile.cv} onChange={handleCVChange} />
 
-                                </ButtonMUI>
-                                <buttonGap className={styles.buttonGap} ></buttonGap>
-                                <ButtonMUI component="label"
-                                    role={undefined}
-                                    variant="contained"
-                                    tabIndex={-1}
-                                    className={styles.buttonmuiupdate}
-                                    onClick={uploadCV}
+                                    </ButtonMUI>
+                                </div>
 
-                                >Update</ButtonMUI>
+                                <div className={styles.divInline}>
+                                    <ButtonMUI component="label"
+                                        role={undefined}
+                                        variant="contained"
+                                        tabIndex={-1}
+                                        className={styles.buttonmuiupdate}
+                                        onClick={uploadCV}
+
+                                    >Update</ButtonMUI>
+                                </div>
 
                             </div>
 

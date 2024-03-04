@@ -42,7 +42,7 @@
 
 .buttonmuiupdate {
   width: 70px;
-  margin-left: 10px;
+  height: 35px;
 }
 
 
@@ -50,7 +50,22 @@
   margin-right: 10px;
 }
 
-buttonGap {
-  margin: 7px;
+.divInline {
+  display: inline-block;
+}
+
+.divInlineCV {
+  display: inline-block;
+}
+
+.divInlineChooseCV {
+  display: inline-block;
+  width: 170px;
+
+}
+
+.divInlineChoosePhoto {
+  display: inline-block;
+  width: 200px;
 }
 

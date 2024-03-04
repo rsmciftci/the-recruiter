@@ -28,6 +28,9 @@ urlpatterns = [
     ),
     path("recruiter/", recruiter_view.add_recruiter),
     path("recruiter/<int:id>", recruiter_view.update_or_delete_recruiter),
+    path("find-recruiter/", recruiter_view.find_recruiter, name="find-recruiter"),
+    
+    
     path("jobadvert/", jobadvert_view.add_jobadvert),
     path("jobadvert/<int:id>", jobadvert_view.update_or_delete_jobadvert),
     path(
@@ -36,7 +39,10 @@ urlpatterns = [
     ),
     path("jobadvert-by-title/<str:title>", jobadvert_view.find_jobs_applied_by_title),
     path("jobadvert-by-id/<int:id>", jobadvert_view.find_job_by_id),
-    path("jobadvert-apply/<int:job_id>/<int:candidate_id>", jobadvert_view.update_job_for_adding_candidate),
+    path(
+        "jobadvert-apply/<int:job_id>/<int:candidate_id>",
+        jobadvert_view.update_job_for_adding_candidate,
+    ),
     path("jobadvert-delete", jobadvert_view.update_job_for_delete_candidate),
     path("cvtest/", cvtest_views.add_cv),
     path("test/", test_view.my_view),

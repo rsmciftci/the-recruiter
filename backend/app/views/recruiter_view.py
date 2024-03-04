@@ -3,6 +3,7 @@ from ..serializers.recruiter_serializer import RecruiterSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from ..models import Recruiter
+import hashlib
 
 
 @api_view(["POST"])
@@ -17,6 +18,20 @@ def add_recruiter(request):
         return Response(status=status.HTTP_201_CREATED)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(["POST"])
+def find_recruiter(request):
+    email = request.data.get("email")
+    password = hashlib.md5(request.data.get("password").encode("utf-8")).hexdigest()
+    
+    try:
+        recruiter = Recruiter.objects.get(email=email, password=password)
+
+    except Recruiter.DoesNotExist:
+        return Response(recruiter, status=status.HTTP_404_NOT_FOUND)
+    return Response(
+        RecruiterSerializer(recruiter).data, status=status.HTTP_200_OK
+    )
     
 @api_view(["DELETE","PUT"])
 def update_or_delete_recruiter(request,id):

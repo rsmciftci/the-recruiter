@@ -97,7 +97,7 @@ function SearchJobs() {
               <tr>
                 <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
                 <td>{item.company}</td>
-                <td><a href='url'>{item.title}</a></td>
+                <td><a href={"job/"+item.id+"/apply"}>{item.title}</a></td>
                 <td>{item.salary}</td>
                 <td>{item.city}</td>
                 <td>{item.job_type}</td>

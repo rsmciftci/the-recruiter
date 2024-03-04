@@ -18,6 +18,10 @@
 
 }
 
+.centerApplyButton {
+    text-align: center;
+}
+
 gap {
     height: 40px;
     display: block;

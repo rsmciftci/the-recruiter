@@ -49,7 +49,6 @@ function AppliedJobs() {
               <th>Salary</th>
               <th>Location</th>
               <th>Job Type</th>
-              <th className={styles.widthdrawal}>Withdrawal</th>
             </tr>
           </thead>
           <tbody>
@@ -57,11 +56,10 @@ function AppliedJobs() {
               <tr>
                 <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
                 <td>{item.company}</td>
-                <td><a href='url'>{item.title}</a></td>
+                <td><a href={"job/" + item.id + "/applied"}>{item.title}</a></td>
                 <td>{item.salary}</td>
                 <td>{item.city}</td>
                 <td>{item.job_type}</td>
-                <td className={styles.widthdrawal}><MdCancel color='red' size={20} /></td>
               </tr>
             ))}
           </tbody>

@@ -35,6 +35,7 @@ urlpatterns = [
         jobadvert_view.find_jobs_applied_by_candidate,
     ),
     path("jobadvert-by-title/<str:title>", jobadvert_view.find_jobs_applied_by_title),
+    path("jobadvert-by-id/<int:id>", jobadvert_view.find_job_by_id),
     path("jobadvert-apply/<int:job_id>/<int:candidate_id>", jobadvert_view.update_job_for_adding_candidate),
     path("jobadvert-delete", jobadvert_view.update_job_for_delete_candidate),
     path("cvtest/", cvtest_views.add_cv),

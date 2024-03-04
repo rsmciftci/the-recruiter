@@ -1,12 +1,15 @@
-import Recruiter from "./Recruiter";
-import RecruiterLogin from "./RecruiterLogin";
+import { useDispatch, useSelector } from "react-redux";
+import Recruiter from './Recruiter'
+import RecruiterLogin from './RecruiterLogin'
 
 function RecruiterPage() {
-    const isLoggedin = false
+
+    const recruiterData = useSelector(state => state.data.recruiterSlice);
+
     return (
 
         <div>
-           {isLoggedin ? <Recruiter/> : <RecruiterLogin/>}
+           { recruiterData.login ? <Recruiter/> : <RecruiterLogin/>}
         </div>
     );
 }

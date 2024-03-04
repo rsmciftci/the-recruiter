@@ -48,6 +48,19 @@ export const candidateSlice = createSlice({
             state.cv = action.payload.cv;
             state.photo = action.payload.photo;
         },
+        setCandidateWithoutCVandPhoto: (state, action) => {
+            state.firstName = action.payload.first_name;
+            state.surname = action.payload.surname;
+            state.email = action.payload.email;
+            state.dateOfBirth = action.payload.date_of_birth;
+            state.phone = action.payload.phone;
+            state.city = action.payload.city;
+            state.town = action.payload.town;
+            state.postcode = action.payload.postcode;
+            state.gender = action.payload.gender;
+            state.currentPosition = action.payload.current_position;
+            state.id = action.payload.id;
+        },
 
         setPhotoState: (state, action) => {
             state.photo = action.payload;
@@ -81,5 +94,5 @@ export const candidateSlice = createSlice({
 })
 
 
-export const { setLoggedin, setCandidate, initailize, setPhotoState, setCVState } = candidateSlice.actions
+export const { setLoggedin, setCandidate, initailize, setPhotoState, setCVState, setCandidateWithoutCVandPhoto } = candidateSlice.actions
 export default candidateSlice.reducer

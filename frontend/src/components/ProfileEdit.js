@@ -15,7 +15,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import candidateService from '../services/CandidateService';
-import { baseURL, default_female_photo, default_male_photo, setCVState, setCandidate, setPhotoState } from '../redux/candidateSlice';
+import { baseURL, default_female_photo, default_male_photo, setCVState, setCandidate, setCandidateWithoutCVandPhoto, setPhotoState } from '../redux/candidateSlice';
 import { Slide, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CV from './CV';
@@ -102,14 +102,13 @@ function ProfileEdit() {
 
 
     const handleSubmit = (e) => {
-        console.log(newProfile)
         e.preventDefault();
         candidateService.updateUser(newProfile)
             .then(response => {
                 notifySomethingWentWrong()
 
                 delete response.data.password //TODO: change backend to remove password from response
-                dispatch(setCandidate(newProfile))
+                dispatch(setCandidateWithoutCVandPhoto(newProfile))
                 dispatch(closeProfileEdit())
 
             })

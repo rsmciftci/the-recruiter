@@ -49,7 +49,7 @@ function Profile() {
                     <div className={styles.InfoDiv}>
                         <p className={styles.nameSurname}>{candidateData.firstName + " " + candidateData.surname}</p>
                         <p>{candidateData.currentPosition}</p>
-
+                        <p>{candidateData.cv ? <CV url={baseURL + candidateData.cv} /> : "Please Upload Your CV"}</p>
                         <p>{candidateData.email}</p>
                         <p>{candidateData.phone}</p>
                         <p>{candidateData.postcode}</p>

@@ -18,6 +18,11 @@ const reducer = combineReducers({
 const persistedReducer = persistReducer(persistConfig, reducer)
 
 export const store = configureStore({
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false
+    }),
+
     reducer: {
         data: persistedReducer,
         profilePage : profileSlice,

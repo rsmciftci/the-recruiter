@@ -31,10 +31,16 @@ def find_jobs_applied_by_candidate(request, candidate_id):
 def find_jobs_applied_by_title(request, title):
     
     job_adverts = JobAdvert.objects.filter(title__icontains=title)
-    serializer = JobAdvertSerializer(job_adverts, many=True)
+    serializer = JobAdvertSerializer(job_adverts, many=True)    
+    return Response(serializer.data,status=status.HTTP_200_OK)  
+
+@api_view(["GET"])
+def find_job_by_id(request, id):
     
-    return Response(serializer.data,status=status.HTTP_200_OK)
-    
+    job_advert = JobAdvert.objects.get(id=id)
+    serializer = JobAdvertSerializer(job_advert)
+    return Response(serializer.data,status=status.HTTP_200_OK) 
+
    
 
 @api_view(["DELETE", "PUT"])

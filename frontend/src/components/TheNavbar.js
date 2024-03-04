@@ -10,25 +10,36 @@ import { initailize, setLoggedin } from '../redux/candidateSlice';
 import { initailize_appliedJobs } from '../redux/appliedJobsSlice';
 import { useState } from 'react';
 import { setJobSearchText } from '../redux/jobSearchSlice';
+import { initailizeRecruiter } from '../redux/recruiterSlice';
 
 function TheNavbar() {
 
   function logOut() {
-    dispatch(setLoggedin());
-    dispatch(initailize());
-    dispatch(initailize_appliedJobs());
-    window.location.href = '/';
+
+    if (recruiterData.login) {
+      dispatch(initailizeRecruiter());
+      window.location.href = '/recruiter';
+
+    } else {
+      dispatch(setLoggedin());
+      dispatch(initailize());
+      dispatch(initailize_appliedJobs());
+      window.location.href = '/';
+
+    }
+
+
 
   }
 
-  
+
 
   function searchJob(url) {
-    if (url === "Enter" || url === "NumpadEnter")
-     {  window.location.href = "http://localhost:3000/search-jobs"}
+    if (url === "Enter" || url === "NumpadEnter") { window.location.href = "http://localhost:3000/search-jobs" }
   }
   const dispatch = useDispatch();
   const candidateData = useSelector(state => state.data.candidateData);
+  const recruiterData = useSelector(state => state.data.recruiterSlice);
 
   return (
     <div>
@@ -60,12 +71,12 @@ function TheNavbar() {
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                   onChange={(e) => dispatch(setJobSearchText(e.target.value))}
-                  
-                  onKeyUp={(e) => { searchJob(e.code)}}
+
+                  onKeyUp={(e) => { searchJob(e.code) }}
                 />
               </InputGroup> : ""
             }
-            {candidateData.login ?
+            {(candidateData.login || recruiterData.login) ?
               <Nav>
                 {/* TODO: initialize candidate data */}
                 <Nav.Link onClick={() => logOut()} style={{ paddingLeft: 900 }}>Logout</Nav.Link>

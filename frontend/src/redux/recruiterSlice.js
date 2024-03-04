@@ -35,7 +35,7 @@ export const recruiterSlice = createSlice({
         },
 
 
-        initailize: (state) => {
+        initailizeRecruiter: (state) => {
             state.login = false;
             state.first_name = "";
             state.surname = "";
@@ -50,5 +50,5 @@ export const recruiterSlice = createSlice({
 })
 
 
-export const { updateRecruiterLogin, setRecruiter, initailize } = recruiterSlice.actions
+export const { updateRecruiterLogin, setRecruiter, initailizeRecruiter } = recruiterSlice.actions
 export default recruiterSlice.reducer

@@ -76,6 +76,37 @@ function TheNavbar() {
                 />
               </InputGroup> : ""
             }
+
+
+            {recruiterData.login ?
+              <Nav >
+                <Nav.Link href="http://localhost:3000/recruiter/profile">Profile</Nav.Link>
+              </Nav> : ""
+            }
+            {recruiterData.login ?
+              <Nav className={styles.myjobs}>
+                <Nav.Link href="http://localhost:3000/recruiter/myjobs" >My Jobs</Nav.Link>
+              </Nav> : ""
+            }
+            {recruiterData.login ?
+              <Nav className={styles.createJob}>
+                <Nav.Link href="http://localhost:3000/recruiter/create-job" >Create Job</Nav.Link>
+              </Nav> : ""
+            }
+            {recruiterData.login ?
+              <InputGroup className={styles.centersearch}>
+                <Form.Control
+                  placeholder="Search Candidate"
+                  aria-label="JobTitle"
+                  aria-describedby="basic-addon1"
+                  // onChange={(e) => dispatch(setJobSearchText(e.target.value))}
+
+                  // onKeyUp={(e) => { searchJob(e.code) }}
+                />
+              </InputGroup> : ""
+            }
+
+
             {(candidateData.login || recruiterData.login) ?
               <Nav>
                 {/* TODO: initialize candidate data */}

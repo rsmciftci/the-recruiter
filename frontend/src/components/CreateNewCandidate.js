@@ -14,77 +14,54 @@ import Button from 'react-bootstrap/Button';
 
 function CreateNewCandidate() {
 
-    const candidateData = useSelector(state => state.data.candidateData);
 
 
-    const [newProfile, setNewProfile] = useState({
-        id: candidateData.id,
-        first_name: candidateData.firstName,
-        surname: candidateData.surname,
-        current_position: candidateData.currentPosition,
-        email: candidateData.email,
-        phone: candidateData.phone,
-        postcode: candidateData.postcode,
-        town: candidateData.town,
-        city: candidateData.city,
-        gender: candidateData.gender,
-        password: ""
-    });
+    const [candidate, setCandidate] = useState([]);
+    const [passwords, setPasswords] = useState([]);
 
-    const notifyWrongPassword = () => toast.error('Password is incorrect!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Slide,
-    });
-    const notifySomethingWentWrong = () => toast.error('Something went wrong!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Slide,
-    });
+    function redirectToHomePage() {
+        window.location.href = "/";
+    }
+
+
 
 
 
 
     const handleSubmit = (e) => {
-        console.log(newProfile)
+        console.log(candidate)
         e.preventDefault();
-        candidateService.updateUser(newProfile)
-            .then(response => {
-                notifySomethingWentWrong()
+        if (passwords.password != passwords.password1) {
+            alert("Passwords doesn't match!") //TODO: toast
+        } else {
+            candidateService.saveUser(candidate)
+                .then(response => {
+                    alert("Successfully Registered")
+                    redirectToHomePage()
 
-                delete response.data.password //TODO: change backend to remove password from response
-                dispatch(setCandidate(newProfile))
-                dispatch(closeProfileEdit())
+                })
+                .catch(error => {
 
-            })
-            .catch(error => {
-                // dispatch(closeProfileEdit())
-                // TODO: call alert function if response.data.status == 401
+                    alert(error)
+                });
 
-                (error.response.status === 401) ? notifyWrongPassword() : notifySomethingWentWrong()
 
-            });
+        }
+
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setNewProfile({ ...newProfile, [name]: value });
-        console.log(newProfile.name)
+        setCandidate({ ...candidate, [name]: value });
     };
 
-    const dispatch = useDispatch()
+    const handlePasswordChange = (e) => {
+        const { name, value } = e.target;
+        setPasswords({ ...passwords, [name]: value });
+        if (name === "password") {
+            setCandidate({ ...candidate, [name]: value });
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -93,67 +70,67 @@ function CreateNewCandidate() {
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Name">
-                    <Form.Control type="text" value={newProfile.first_name} name="first_name" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.first_name} name="first_name" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Surname">
-                    <Form.Control type="text" value={newProfile.surname} name="surname" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.surname} name="surname" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Email">
-                    <Form.Control type="email" value={newProfile.email} name="email" onChange={handleChange} />
+                    <Form.Control type="email" value={candidate.email} name="email" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Current Position">
-                    <Form.Control type="text" value={newProfile.current_position} name="current_position" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.current_position} name="current_position" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Phone">
-                    <Form.Control type="text" value={newProfile.phone} name="phone" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.phone} name="phone" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Post Code">
-                    <Form.Control type="text" value={newProfile.postcode} name="postcode" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.postcode} name="postcode" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Town">
-                    <Form.Control type="text" value={newProfile.town} name="town" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.town} name="town" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="City">
-                    <Form.Control type="text" value={newProfile.city} name="city" onChange={handleChange} />
+                    <Form.Control type="text" value={candidate.city} name="city" onChange={handleChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Password">
-                    <Form.Control type="password" value={newProfile.password} name="password" onChange={handleChange} />
+                    <Form.Control type="password" value={candidate.password} name="password" onChange={handlePasswordChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Password">
-                    <Form.Control type="password" value={newProfile.password1} name="password1" onChange={handleChange} />
+                    <Form.Control type="password" value={candidate.password1} name="password1" onChange={handlePasswordChange} />
                 </FloatingLabel>
                 <FloatingLabel
                     className={styles.FloatingLabel}
                     controlId="floatingInput"
                     label="Gender">
-                    <Form.Select aria-label="Default select example" value={newProfile.gender} name="gender" onChange={handleChange}>
+                    <Form.Select aria-label="Default select example" value={candidate.gender} name="gender" onChange={handleChange}>
                         <option></option>
                         <option value="MALE">Male</option>
                         <option value="FEMALE">Female</option>
@@ -162,7 +139,7 @@ function CreateNewCandidate() {
                 </FloatingLabel>
                 <hr className={styles.horizontalLine}></hr>
 
-                <Button variant="primary">Sign Up</Button>
+                <Button variant="primary" onClick={handleSubmit}>Sign Up</Button>
 
 
             </div>

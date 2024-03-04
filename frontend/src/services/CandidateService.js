@@ -14,6 +14,8 @@ const candidateService = {
 
     findAppliedJobs: (candidate_id) => axiosInstance.get("jobadvert-by-candidateid/" + candidate_id),
 
+    saveUser: (data) => axiosInstance.post("candidate/" , data),
+
 }
 
 

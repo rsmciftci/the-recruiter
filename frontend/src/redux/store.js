@@ -5,6 +5,7 @@ import { persistReducer , persistStore} from 'redux-persist'
 import profileSlice from "./profileSlice"
 import appliedJobsSlice from "./appliedJobsSlice"
 import jobSearchSlice from "./jobSearchSlice"
+import recruiterSlice from "./recruiterSlice"
 const persistConfig = {
     key: 'root',
     storage,
@@ -12,7 +13,8 @@ const persistConfig = {
 
 const reducer = combineReducers({
     candidateData : candidateSlice,
-    jobSearchSlice : jobSearchSlice
+    jobSearchSlice : jobSearchSlice,
+    recruiterSlice : recruiterSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

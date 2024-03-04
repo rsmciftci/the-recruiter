@@ -25,7 +25,7 @@ function TheNavbar() {
 
   function searchJob(url) {
     if (url === "Enter" || url === "NumpadEnter")
-     {  window.location.href = "search-jobs"}
+     {  window.location.href = "http://localhost:3000/search-jobs"}
   }
   const dispatch = useDispatch();
   const candidateData = useSelector(state => state.data.candidateData);
@@ -36,7 +36,7 @@ function TheNavbar() {
         <Container>
 
           <Navbar.Brand href="/">
-            <img src='the-recruiter.png' width={132} height={30} alt='the-recruiter-logo'></img>
+            <img src='http://localhost:3000/the-recruiter.png' width={132} height={30} alt='the-recruiter-logo'></img>
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

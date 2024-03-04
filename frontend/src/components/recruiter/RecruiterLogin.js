@@ -2,11 +2,10 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/esm/FloatingLabel';
 import styles from './RecruiterLogin.module.css'
 import Button from 'react-bootstrap/Button';
-import { setLoggedin, setCandidate } from '../../redux/candidateSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import candidateService from '../../services/CandidateService';
 import recruiterService from '../../services/RecruiterService';
+import { setRecruiter, updateRecruiterLogin } from '../../redux/recruiterSlice';
 
 function RecruiterLogin() {
     const dispatch = useDispatch();
@@ -28,8 +27,8 @@ function RecruiterLogin() {
         recruiterService.login(loginData)
             .then(response => {
                 delete response.data.password //TODO: change backend to remove password from response
-                dispatch(setCandidate(response.data))
-                dispatch(setLoggedin())             
+                dispatch(setRecruiter(response.data))
+                dispatch(updateRecruiterLogin())             
 
             })
             .catch(error => {

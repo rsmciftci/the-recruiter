@@ -40,7 +40,6 @@ export default function CreateNewRecruiter() {
 
     return (
         <div className={styles.outerDiv}>
-            <div className={styles.topDiv}></div>
 
             <div className={styles.mainDiv}>
                 <div className={styles.divBlock}>
@@ -217,36 +216,33 @@ export default function CreateNewRecruiter() {
                 </div>
 
 
-                <div className={styles.textDiv}>
+                <div className={styles.inlineParent}>
 
-                    <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" />
-
-                    <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" />
-                    <br></br>
-
-
-                    <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" />
-
-                    <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" />
-                    <br></br>
+                    <div >
+                        <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" />
+                        <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" />
+                        <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
 
 
-                    <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
+                    </div>
 
 
+                    <div >
+                        <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" />
+                        <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" />
+                        <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
+                    </div>
 
-                    <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
-                    <hr></hr>
 
+                </div>
 
+                <hr></hr>
+                <div className={styles.centerDiv}>
                     <Button variant="outlined">Register</Button>
-
                 </div>
 
 
             </div>
-
-            <div className={styles.bottomDiv}></div>
 
 
 

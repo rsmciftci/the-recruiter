@@ -62,24 +62,33 @@
 .divBlock {
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   padding-top: 75px;
+  
 }
 
 .textDiv {
   text-align: center;
+
 }
 
 .textField {
-  margin: 10px;
-  width: 200px;
-}
-
-.bottomDiv {
-  height: 150px;
+  width: 210px;
+  height: 70px;
 }
 
 .topDiv {
   height: 1px;
+}
+
+.centerDiv{
+  text-align: center;
+}
+
+.inlineParent {
+  display: flex;
+  text-align: center;
+}
+
+body {
+  background-color: rgba(242, 242, 242, 255);
 }

@@ -1,27 +1,28 @@
-import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import styles from './CreateNewRecruiter.module.css'
-import { TableRow } from '@mui/material';
 import companyService from '../../services/CompanyService';
 import recruiterService from '../../services/RecruiterService';
+import { Fragment, useEffect, useState } from 'react';
 
 const filter = createFilterOptions();
 
 export default function CreateNewRecruiter() {
 
 
-    const [companies, setCompanies] = React.useState([""])
-    const [recruiter, setRecruiter] = React.useState([""])
-    const [password, setPassword] = React.useState("")
+    const [companies, setCompanies] = useState([""])
+    const [recruiter, setRecruiter] = useState([""])
+    const [company, setCompany] = useState("")
+    const [password, setPassword] = useState("")
+    const [companyName, setCompanyName] = useState("")
+    const [addCompany, setAddCompany] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         companyService.retunAllCompanies().then(response => {
             setCompanies(response.data)
         }
@@ -33,8 +34,8 @@ export default function CreateNewRecruiter() {
 
 
 
-    const [value, setValue] = React.useState(null);
-    const [open, toggleOpen] = React.useState(false);
+    const [value, setValue] = useState(null);
+    const [open, toggleOpen] = useState(false);
 
     const handleClose = () => {
         setDialogValue({
@@ -44,7 +45,7 @@ export default function CreateNewRecruiter() {
         toggleOpen(false);
     };
 
-    const [dialogValue, setDialogValue] = React.useState({
+    const [dialogValue, setDialogValue] = useState({
         title: '',
         year: '',
     });
@@ -57,17 +58,33 @@ export default function CreateNewRecruiter() {
         });
         handleClose();
     };
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRecruiter({ ...recruiter, [name]: value });
     };
+    const handleCompanyChange = (e) => {
+        const { name, value } = e.target;
+        setCompany({ ...company, [name]: value });
+    };
 
     function register() {
 
-        if (recruiter.password != password ) {
+        if (addCompany) {
+            saveCompany();
+        } else {
+            saveRecruiter();
+        }
+
+
+
+    }
+
+    function saveRecruiter() {
+        if (recruiter.password != password) {
             alert("Passwords doesn't match!") //TODO: toast
         } else {
-            console.log(recruiter)
             recruiterService.saveRecruiter(recruiter)
                 .then(response => {
                     alert("Successfully Registered")
@@ -77,10 +94,19 @@ export default function CreateNewRecruiter() {
                 .catch(error => {
                     alert(error)
                 });
-
-
         }
-                
+
+    }
+
+    function saveCompany() {
+
+        companyService.saveCompany(company)
+            .then(response => {
+                saveRecruiter();
+            })
+            .catch(error => {
+                alert(error)
+            });
     }
 
     function redirectToHomePage() {
@@ -89,10 +115,9 @@ export default function CreateNewRecruiter() {
 
     return (
         <div className={styles.outerDiv}>
-            <p>{console.log(password)}</p>
             <div className={styles.mainDiv}>
                 <div className={styles.divBlock}>
-                    <React.Fragment>
+                    <Fragment>
                         <Autocomplete
                             value={recruiter.company}
                             onChange={(event, newValue) => {
@@ -112,9 +137,10 @@ export default function CreateNewRecruiter() {
                                         year: '',
                                     });
                                 } else {
-                                    setRecruiter({ company:newValue.name,});
+                                    setRecruiter({ company: newValue.name, });
                                 }
                             }}
+
                             filterOptions={(options, params) => {
                                 const filtered = filter(options, params);
 
@@ -127,7 +153,7 @@ export default function CreateNewRecruiter() {
 
                                 return filtered;
                             }}
-                            id="free-solo-dialog-demo"
+                            // id="free-solo-dialog-demo"
                             options={companies}
                             getOptionLabel={(option) => {
                                 // e.g. value selected with enter, right from the input
@@ -145,130 +171,115 @@ export default function CreateNewRecruiter() {
                             renderOption={(props, option) => <li {...props}>{option.name}</li>}
                             sx={{ width: 300 }}
                             freeSolo
-                            renderInput={(params) => <TextField {...params} label="Search Your Company" />}
+                            renderInput={(params) => <TextField {...params} name="company" id="company" label="Search Your Company" onChange={(e) => {
+                                setCompanyName(e.target.value);
+                            }} />}
 
                         />
 
-
                         <Dialog open={open} onClose={handleClose}>
-                            <form onSubmit={handleSubmit}>
-                                <DialogTitle>Add Your Company</DialogTitle>
-                                <hr></hr>
 
-                                <DialogContent>
-                                    <div className={styles.PopupParent}>
-                                        <div>
-                                            <div className={styles.popupChild}>
-                                                <TextField
-                                                    className={styles.popupTextField}
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="name"
-                                                    value={dialogValue.name}
-                                                    onChange={(event) =>
-                                                        setDialogValue({
-                                                            ...dialogValue,
-                                                            title: event.target.value,
-                                                        })
-                                                    }
-                                                    label="Name"
-                                                    type="text"
-                                                    variant="outlined"
-                                                />
+                            <DialogTitle>Add Your Company</DialogTitle>
+                            <hr></hr>
 
-                                                <TextField
-                                                    className={styles.popupTextField}
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="town"
-                                                    value={dialogValue.town}
-                                                    onChange={(event) =>
-                                                        setDialogValue({
-                                                            ...dialogValue,
-                                                            title: event.target.value,
-                                                        })
-                                                    }
-                                                    label="Phone"
-                                                    type="text"
-                                                    variant="outlined"
-                                                />
-                                            </div>
-                                            <div className={styles.popupChild}>
-                                                <TextField
-                                                    className={styles.popupTextField}
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="city"
-                                                    value={dialogValue.city}
-                                                    onChange={(event) =>
-                                                        setDialogValue({
-                                                            ...dialogValue,
-                                                            title: event.target.value,
-                                                        })
-                                                    }
-                                                    label="City"
-                                                    type="text"
-                                                    variant="outlined"
-                                                />
-
-                                                <TextField
-                                                    className={styles.popupTextField}
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="town"
-                                                    value={dialogValue.town}
-                                                    onChange={(event) =>
-                                                        setDialogValue({
-                                                            ...dialogValue,
-                                                            title: event.target.value,
-                                                        })
-                                                    }
-                                                    label="Town"
-                                                    type="text"
-                                                    variant="outlined"
-                                                />
-                                            </div>
-
-
+                            <DialogContent>
+                                <div className={styles.PopupParent}>
+                                    <div>
+                                        <div className={styles.popupChild}>
+                                            <TextField
+                                                className={styles.popupTextField}
+                                                autoFocus
+                                                margin="dense"
+                                                id="name"
+                                                name="name"
+                                                value={dialogValue.name}
+                                                onChange={handleCompanyChange}
+                                                label="Name"
+                                                type="text"
+                                                variant="outlined"
+                                            />
 
                                             <TextField
                                                 className={styles.popupTextField}
                                                 autoFocus
                                                 margin="dense"
-                                                id="postcode"
-                                                value={dialogValue.postcode}
-                                                onChange={(event) =>
-                                                    setDialogValue({
-                                                        ...dialogValue,
-                                                        title: event.target.value,
-                                                    })
-                                                }
-                                                label="Post Code"
+                                                id="phone"
+                                                name="phone"
+                                                value={dialogValue.town}
+                                                onChange={handleCompanyChange}
+                                                label="Phone"
+                                                type="text"
+                                                variant="outlined"
+                                            />
+                                        </div>
+                                        <div className={styles.popupChild}>
+                                            <TextField
+                                                className={styles.popupTextField}
+                                                autoFocus
+                                                margin="dense"
+                                                id="city"
+                                                name="city"
+                                                value={dialogValue.city}
+                                                onChange={handleCompanyChange}
+                                                label="City"
                                                 type="text"
                                                 variant="outlined"
                                             />
 
+                                            <TextField
+                                                className={styles.popupTextField}
+                                                autoFocus
+                                                margin="dense"
+                                                id="town"
+                                                name="town"
+                                                value={dialogValue.town}
+                                                onChange={handleCompanyChange}
+
+                                                label="Town"
+                                                type="text"
+                                                variant="outlined"
+                                            />
                                         </div>
+
+
+
+                                        <TextField
+                                            className={styles.popupTextField}
+                                            autoFocus
+                                            margin="dense"
+                                            id="postcode"
+                                            name="postcode"
+                                            value={dialogValue.postcode}
+                                            onChange={handleCompanyChange}
+                                            label="Post Code"
+                                            type="text"
+                                            variant="outlined"
+                                        />
+
                                     </div>
+                                </div>
 
 
-                                </DialogContent>
+                            </DialogContent>
 
-                                <hr></hr>
-                                <DialogActions>
-                                    <Button onClick={handleClose}>Cancel</Button>
-                                    <Button type="submit">Add</Button>
-                                </DialogActions>
-                            </form>
+                            <hr></hr>
+                            <DialogActions>
+                                <Button onClick={handleClose}>Cancel</Button>
+                                <Button onClick={() => {
+                                    setAddCompany(true);
+                                    handleClose();
+                                    setRecruiter({ ...recruiter, company: companyName });
+                                    setCompany({ ...company, name: companyName });
+
+                                }}>Add</Button>
+
+                            </DialogActions>
+
 
 
 
                         </Dialog>
-
-
-
-
-                    </React.Fragment>
+                    </Fragment>
 
                 </div>
                 <div>
@@ -282,7 +293,6 @@ export default function CreateNewRecruiter() {
                         <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" onChange={handleChange} />
                         <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" onChange={handleChange} />
                         <TextField id="outlined-basic" className={styles.textField} type='password' name="password" label="Password" variant="outlined" onChange={handleChange} />
-                        {console.log(recruiter)}
 
                     </div>
 
@@ -290,7 +300,7 @@ export default function CreateNewRecruiter() {
                     <div >
                         <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" onChange={handleChange} />
                         <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" onChange={handleChange} />
-                        <TextField id="outlined-basic" className={styles.textField} type='password'  name="password1" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
+                        <TextField id="outlined-basic" className={styles.textField} type='password' name="password1" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
 

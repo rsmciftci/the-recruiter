@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
 
 const companyService = {
     retunAllCompanies: () => axiosInstance.get("all-companies/"),
+    saveCompany: (company) => axiosInstance.post("company/", company),
    
 }
 

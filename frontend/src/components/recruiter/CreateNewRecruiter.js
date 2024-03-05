@@ -9,10 +9,27 @@ import Button from '@mui/material/Button';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import styles from './CreateNewRecruiter.module.css'
 import { TableRow } from '@mui/material';
+import companyService from '../../services/CompanyService';
 
 const filter = createFilterOptions();
 
 export default function CreateNewRecruiter() {
+
+
+    const [companies, setCompanies ] = React.useState([""])
+
+    React.useEffect(() => {
+        companyService.retunAllCompanies().then(response => {
+            setCompanies(response.data)
+        }
+        ).catch(error => {
+            //  TODO: throw Error here
+        })
+
+    }, []);
+
+
+
     const [value, setValue] = React.useState(null);
     const [open, toggleOpen] = React.useState(false);
 
@@ -79,7 +96,7 @@ export default function CreateNewRecruiter() {
                                 return filtered;
                             }}
                             id="free-solo-dialog-demo"
-                            options={londonSoftwareCompanies}
+                            options={companies}
                             getOptionLabel={(option) => {
                                 // e.g. value selected with enter, right from the input
                                 if (typeof option === 'string') {
@@ -113,7 +130,7 @@ export default function CreateNewRecruiter() {
                                 <DialogContent>
                                     <div className={styles.PopupParent}>
                                         <div>
-                                        <div className={styles.popupChild}>
+                                            <div className={styles.popupChild}>
                                                 <TextField
                                                     className={styles.popupTextField}
                                                     autoFocus
@@ -273,86 +290,3 @@ export default function CreateNewRecruiter() {
 
     );
 }
-
-const londonSoftwareCompanies = [
-    {
-        name: "SoftTech Solutions Ltd.",
-        city: "London",
-        town: "Silicon Roundabout",
-        phone: "+44 20 1234 5678",
-        postcode: "EC1Y 1AE",
-        country: "United Kingdom"
-    },
-    {
-        name: "CodeCrafters",
-        city: "London",
-        town: "Tech Hub",
-        phone: "+44 20 9876 5432",
-        postcode: "E1 6AN",
-        country: "United Kingdom"
-    },
-    {
-        name: "ByteBlasters",
-        city: "London",
-        town: "Innovation District",
-        phone: "+44 20 5555 5555",
-        postcode: "WC1E 7HU",
-        country: "United Kingdom"
-    },
-    {
-        name: "TechNest",
-        city: "London",
-        town: "Tech Square",
-        phone: "+44 20 1111 1111",
-        postcode: "SE1 7PB",
-        country: "United Kingdom"
-    },
-    {
-        name: "InnoSoft",
-        city: "London",
-        town: "Digital Park",
-        phone: "+44 20 2222 2222",
-        postcode: "N1 6DR",
-        country: "United Kingdom"
-    },
-    {
-        name: "CyberNexus",
-        city: "London",
-        town: "Cyber Centre",
-        phone: "+44 20 3333 3333",
-        postcode: "W1A 1AA",
-        country: "United Kingdom"
-    },
-    {
-        name: "PixelPioneers",
-        city: "London",
-        town: "Pixel Place",
-        phone: "+44 20 4444 4444",
-        postcode: "SW1A 2AA",
-        country: "United Kingdom"
-    },
-    {
-        name: "DataDriven",
-        city: "London",
-        town: "Data District",
-        phone: "+44 20 5555 5555",
-        postcode: "EC2R 8AH",
-        country: "United Kingdom"
-    },
-    {
-        name: "CloudCoders",
-        city: "London",
-        town: "Cloud Campus",
-        phone: "+44 20 6666 6666",
-        postcode: "EC4N 6EU",
-        country: "United Kingdom"
-    },
-    {
-        name: "CodeGenius",
-        city: "London",
-        town: "Tech Towers",
-        phone: "+44 20 7777 7777",
-        postcode: "W1S 1AD",
-        country: "United Kingdom"
-    }
-];

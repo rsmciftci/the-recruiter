@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
 
 const recruiterService = {
     login: (loginData) => axiosInstance.post("find-recruiter/", loginData),
+    saveRecruiter: (recruiter) => axiosInstance.post("recruiter/", recruiter),
   
 }
 

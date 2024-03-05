@@ -10,13 +10,16 @@ import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import styles from './CreateNewRecruiter.module.css'
 import { TableRow } from '@mui/material';
 import companyService from '../../services/CompanyService';
+import recruiterService from '../../services/RecruiterService';
 
 const filter = createFilterOptions();
 
 export default function CreateNewRecruiter() {
 
 
-    const [companies, setCompanies ] = React.useState([""])
+    const [companies, setCompanies] = React.useState([""])
+    const [recruiter, setRecruiter] = React.useState([""])
+    const [password, setPassword] = React.useState("")
 
     React.useEffect(() => {
         companyService.retunAllCompanies().then(response => {
@@ -54,15 +57,44 @@ export default function CreateNewRecruiter() {
         });
         handleClose();
     };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setRecruiter({ ...recruiter, [name]: value });
+    };
+
+    function register() {
+
+        if (recruiter.password != password ) {
+            alert("Passwords doesn't match!") //TODO: toast
+        } else {
+            console.log(recruiter)
+            recruiterService.saveRecruiter(recruiter)
+                .then(response => {
+                    alert("Successfully Registered")
+                    redirectToHomePage()
+
+                })
+                .catch(error => {
+                    alert(error)
+                });
+
+
+        }
+                
+    }
+
+    function redirectToHomePage() {
+        window.location.href = "http://localhost:3000/recruiter";
+    }
 
     return (
         <div className={styles.outerDiv}>
-
+            <p>{console.log(password)}</p>
             <div className={styles.mainDiv}>
                 <div className={styles.divBlock}>
                     <React.Fragment>
                         <Autocomplete
-                            value={value}
+                            value={recruiter.company}
                             onChange={(event, newValue) => {
                                 if (typeof newValue === 'string') {
                                     // timeout to avoid instant validation of the dialog's form.
@@ -80,7 +112,7 @@ export default function CreateNewRecruiter() {
                                         year: '',
                                     });
                                 } else {
-                                    setValue(newValue);
+                                    setRecruiter({ company:newValue.name,});
                                 }
                             }}
                             filterOptions={(options, params) => {
@@ -114,12 +146,8 @@ export default function CreateNewRecruiter() {
                             sx={{ width: 300 }}
                             freeSolo
                             renderInput={(params) => <TextField {...params} label="Search Your Company" />}
+
                         />
-
-
-
-
-
 
 
                         <Dialog open={open} onClose={handleClose}>
@@ -251,18 +279,18 @@ export default function CreateNewRecruiter() {
                 <div className={styles.inlineParent}>
 
                     <div >
-                        <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" />
-                        <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" />
-                        <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
-
+                        <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" onChange={handleChange} />
+                        <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" onChange={handleChange} />
+                        <TextField id="outlined-basic" className={styles.textField} type='password' name="password" label="Password" variant="outlined" onChange={handleChange} />
+                        {console.log(recruiter)}
 
                     </div>
 
 
                     <div >
-                        <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" />
-                        <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" />
-                        <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
+                        <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" onChange={handleChange} />
+                        <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" onChange={handleChange} />
+                        <TextField id="outlined-basic" className={styles.textField} type='password'  name="password1" label="Password" variant="outlined" onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
 
@@ -270,7 +298,7 @@ export default function CreateNewRecruiter() {
 
                 <hr></hr>
                 <div className={styles.centerDiv}>
-                    <Button variant="outlined">Register</Button>
+                    <Button variant="outlined" onClick={() => register()}>Register</Button>
                 </div>
 
 

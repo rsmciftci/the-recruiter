@@ -46,8 +46,7 @@ class Recruiter(models.Model):
     surname = models.CharField(max_length=30, null=False, blank=False)
     phone = models.CharField(max_length=15, null=False, blank=False, unique=True)
     email = models.EmailField(unique=True, null=False, blank=False)
-    password = models.CharField(null=False, blank=False)
-    gender = models.CharField(max_length=30, null=False, blank=False)    
+    password = models.CharField(null=False, blank=False)   
     
     # gender = models.CharField(
     #     max_length=6,

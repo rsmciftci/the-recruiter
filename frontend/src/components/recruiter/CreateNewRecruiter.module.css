@@ -63,7 +63,7 @@
   display: flex;
   justify-content: center;
   padding-top: 75px;
-  
+
 }
 
 .textDiv {
@@ -80,7 +80,7 @@
   height: 1px;
 }
 
-.centerDiv{
+.centerDiv {
   text-align: center;
 }
 
@@ -91,4 +91,23 @@
 
 body {
   background-color: rgba(242, 242, 242, 255);
+}
+
+.PopupParent {
+  display: flex;
+  text-align: center;
+
+}
+
+.popupChild {
+  width: 220px;
+  display: inline-block;
+
+}
+
+.popupTextField {
+  width: 210px;
+  height: 60px;
+  margin-right: 10px;
+  
 }

@@ -111,85 +111,100 @@ export default function CreateNewRecruiter() {
                                 <hr></hr>
 
                                 <DialogContent>
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="name"
-                                        value={dialogValue.name}
-                                        onChange={(event) =>
-                                            setDialogValue({
-                                                ...dialogValue,
-                                                title: event.target.value,
-                                            })
-                                        }
-                                        label="Name"
-                                        type="text"
-                                        variant="outlined"
-                                    />
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="city"
-                                        value={dialogValue.city}
-                                        onChange={(event) =>
-                                            setDialogValue({
-                                                ...dialogValue,
-                                                title: event.target.value,
-                                            })
-                                        }
-                                        label="City"
-                                        type="text"
-                                        variant="outlined"
-                                    />
+                                    <div className={styles.PopupParent}>
+                                        <div>
+                                        <div className={styles.popupChild}>
+                                                <TextField
+                                                    className={styles.popupTextField}
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="name"
+                                                    value={dialogValue.name}
+                                                    onChange={(event) =>
+                                                        setDialogValue({
+                                                            ...dialogValue,
+                                                            title: event.target.value,
+                                                        })
+                                                    }
+                                                    label="Name"
+                                                    type="text"
+                                                    variant="outlined"
+                                                />
 
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="town"
-                                        value={dialogValue.town}
-                                        onChange={(event) =>
-                                            setDialogValue({
-                                                ...dialogValue,
-                                                title: event.target.value,
-                                            })
-                                        }
-                                        label="Town"
-                                        type="text"
-                                        variant="outlined"
-                                    />
+                                                <TextField
+                                                    className={styles.popupTextField}
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="town"
+                                                    value={dialogValue.town}
+                                                    onChange={(event) =>
+                                                        setDialogValue({
+                                                            ...dialogValue,
+                                                            title: event.target.value,
+                                                        })
+                                                    }
+                                                    label="Phone"
+                                                    type="text"
+                                                    variant="outlined"
+                                                />
+                                            </div>
+                                            <div className={styles.popupChild}>
+                                                <TextField
+                                                    className={styles.popupTextField}
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="city"
+                                                    value={dialogValue.city}
+                                                    onChange={(event) =>
+                                                        setDialogValue({
+                                                            ...dialogValue,
+                                                            title: event.target.value,
+                                                        })
+                                                    }
+                                                    label="City"
+                                                    type="text"
+                                                    variant="outlined"
+                                                />
 
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="town"
-                                        value={dialogValue.town}
-                                        onChange={(event) =>
-                                            setDialogValue({
-                                                ...dialogValue,
-                                                title: event.target.value,
-                                            })
-                                        }
-                                        label="Phone"
-                                        type="text"
-                                        variant="outlined"
-                                    />
+                                                <TextField
+                                                    className={styles.popupTextField}
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="town"
+                                                    value={dialogValue.town}
+                                                    onChange={(event) =>
+                                                        setDialogValue({
+                                                            ...dialogValue,
+                                                            title: event.target.value,
+                                                        })
+                                                    }
+                                                    label="Town"
+                                                    type="text"
+                                                    variant="outlined"
+                                                />
+                                            </div>
 
-                                    <TextField
-                                        autoFocus
-                                        margin="dense"
-                                        id="postcode"
-                                        value={dialogValue.postcode}
-                                        onChange={(event) =>
-                                            setDialogValue({
-                                                ...dialogValue,
-                                                title: event.target.value,
-                                            })
-                                        }
-                                        label="Post Code"
-                                        type="text"
-                                        variant="outlined"
-                                    />
 
+
+                                            <TextField
+                                                className={styles.popupTextField}
+                                                autoFocus
+                                                margin="dense"
+                                                id="postcode"
+                                                value={dialogValue.postcode}
+                                                onChange={(event) =>
+                                                    setDialogValue({
+                                                        ...dialogValue,
+                                                        title: event.target.value,
+                                                    })
+                                                }
+                                                label="Post Code"
+                                                type="text"
+                                                variant="outlined"
+                                            />
+
+                                        </div>
+                                    </div>
 
 
                                 </DialogContent>

@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import styles from './CreateNewRecruiter.module.css'
+import { TableRow } from '@mui/material';
 
 const filter = createFilterOptions();
 
@@ -38,10 +39,11 @@ export default function CreateNewRecruiter() {
     };
 
     return (
+        <div className={styles.outerDiv}>
+            <div className={styles.topDiv}></div>
 
-        <div className={styles.container}>
-            <div className={styles.InputDiv}>
-                <div className={styles.companyDiv}>
+            <div className={styles.mainDiv}>
+                <div className={styles.divBlock}>
                     <React.Fragment>
                         <Autocomplete
                             value={value}
@@ -108,9 +110,8 @@ export default function CreateNewRecruiter() {
                             <form onSubmit={handleSubmit}>
                                 <DialogTitle>Add Your Company</DialogTitle>
                                 <hr></hr>
-                                <div>
-                                    <div>
-                                    <DialogContent>
+
+                                <DialogContent>
                                     <TextField
                                         autoFocus
                                         margin="dense"
@@ -193,68 +194,70 @@ export default function CreateNewRecruiter() {
 
 
                                 </DialogContent>
-                                    </div>
-                                </div>
+
                                 <hr></hr>
                                 <DialogActions>
                                     <Button onClick={handleClose}>Cancel</Button>
                                     <Button type="submit">Add</Button>
                                 </DialogActions>
                             </form>
+
+
+
                         </Dialog>
+
+
+
+
                     </React.Fragment>
 
-
+                </div>
+                <div>
+                    <hr></hr>
                 </div>
 
 
-                <hr></hr>
-                <div className={styles.tableStyle}>
-                    <div>
-                        <tr >
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="first_name" label="First Name" variant="outlined" />
-                            </td>
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="surname" label="Surname" variant="outlined" />
+                <div className={styles.textDiv}>
 
-                            </td>
+                    <TextField id="outlined-basic" className={styles.textField} name="first_name" label="First Name" variant="outlined" />
+
+                    <TextField id="outlined-basic" className={styles.textField} name="surname" label="Surname" variant="outlined" />
+                    <br></br>
 
 
-                        </tr>
-                        <tr>
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="phone" label="Phone" variant="outlined" />
-                            </td>
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="email" label="Email" variant="outlined" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="password" label="Password" variant="outlined" />
-                            </td>
+                    <TextField id="outlined-basic" className={styles.textField} name="phone" label="Phone" variant="outlined" />
 
-                            <td className={styles.tableData}>
-                                <TextField id="outlined-basic" name="password" label="Password" variant="outlined" />
-                            </td>
-                        </tr>
-                    </div>
+                    <TextField id="outlined-basic" className={styles.textField} name="email" label="Email" variant="outlined" />
+                    <br></br>
+
+
+                    <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
+
+
+
+                    <TextField id="outlined-basic" className={styles.textField} name="password" label="Password" variant="outlined" />
+                    <hr></hr>
+
+
+                    <Button variant="outlined">Register</Button>
+
                 </div>
-
-
-
-                <hr></hr>
-
-                <Button variant="outlined">Register</Button>
-
-
 
 
             </div>
 
-        </div >
-        
+            <div className={styles.bottomDiv}></div>
+
+
+
+
+
+
+
+
+        </div>
+
+
 
 
     );

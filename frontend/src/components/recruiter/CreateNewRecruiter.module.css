@@ -1,0 +1,85 @@
+/* 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 88vh;
+  background-color: rgba(242, 242, 242, 255); 
+
+}
+
+.InputDiv {
+  display: inline-block;
+  padding: 20px;
+  border: black outset 2px;
+  border-radius: 10px;
+  width: 650px;
+  background-color: white;
+
+}
+
+.tableData {
+  width: 250px;
+  padding: 10px;
+}
+
+
+
+.companyDiv {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.tableStyle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.mainDiv {
+  width: 710px;
+  margin-left: 600px;
+  margin-top: 130px;
+  border: black 2px;
+  border-style: outset;
+  border-radius: 10px;
+  padding-left: 133px;
+  padding-right: 133px;
+  height: 600px;
+  background-color: white;
+}
+
+.outerDiv {
+  background-color: rgba(242, 242, 242, 255);
+
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.divBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 75px;
+}
+
+.textDiv {
+  text-align: center;
+}
+
+.textField {
+  margin: 10px;
+  width: 200px;
+}
+
+.bottomDiv {
+  height: 150px;
+}
+
+.topDiv {
+  height: 1px;
+}

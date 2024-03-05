@@ -20,7 +20,10 @@ urlpatterns = [
     ),
     path("candidate-photo/<int:id>", candidate_views.add_photo, name="add_photo"),
     path("candidate-cv/<int:id>", candidate_views.add_cv, name="add_cv"),
+    
+    
     path("company/", company_view.add_company),
+     path("all-companies/", company_view.get_all_companies),
     path(
         "company/<int:id>",
         company_view.update_or_delete_company,

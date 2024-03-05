@@ -1,6 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from ..serializers.company_serializer import CompanySerializer
+from ..serializers.company_serializer import CompanySerializer, CompanySerializerOnlyName
 from rest_framework import status
 from ..models import Company
 
@@ -57,3 +57,13 @@ def update_or_delete_company(request, id):
             {"message": "Company has been deleted succesfully."},
             status=status.HTTP_204_NO_CONTENT,
         )
+        
+@api_view(["GET"])
+def get_all_companies(request):
+  
+    if(request.method == "GET"):
+        companies = Company.objects.all()   
+        serializer = CompanySerializerOnlyName(companies, many=True)        
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    
+  

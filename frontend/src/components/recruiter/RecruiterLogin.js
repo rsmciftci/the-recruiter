@@ -66,7 +66,7 @@ function RecruiterLogin() {
                 <hr className={styles.horizontalline} />
                 <div className={styles.centerbutton}>
                     {/* TODO : remove onClick */}
-                    <Button variant="success" href='new-recruiter'>Create new account</Button>
+                    <Button variant="success" href='http://localhost:3000/recruiter/new-recruiter'>Create new account</Button>
                 </div>
 
 

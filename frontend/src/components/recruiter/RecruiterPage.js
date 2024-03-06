@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import 'react-toastify/dist/ReactToastify.css';
 import RecruiterProfile from "./RecruiterProfile";
+import RecruiterProfileEdit from "./RecruiterProfileEdit";
 
 function RecruiterPage() {
 
@@ -11,7 +12,7 @@ function RecruiterPage() {
 
     return (
         <div>
-            {isProfileEditOpen ? "acik" : <RecruiterProfile />}       
+            {isProfileEditOpen ? <RecruiterProfileEdit /> : <RecruiterProfile />}       
 
         </div>
     );

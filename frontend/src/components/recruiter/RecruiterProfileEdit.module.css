@@ -1,0 +1,65 @@
+.divCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-left: 70px;
+  height: 250px;
+}
+
+
+
+.UploadNewPhoto {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 500px;
+  display: inline;
+
+}
+
+.profilePhoto {
+  width: 180px;
+  height: 171px;
+
+}
+
+.FloatingLabel {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 320px;
+}
+
+.buttonmui {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.buttonmuiupdate {
+  width: 70px;
+  height: 35px;
+}
+
+
+.buttonmuichooseimage {
+  margin-right: 10px;
+}
+
+.divInline {
+  display: inline-block;
+}
+
+.divInlineCV {
+  display: inline-block;
+}
+
+.divInlineChooseCV {
+  display: inline-block;
+  width: 170px;
+
+}
+
+.divInlineChoosePhoto {
+  display: inline-block;
+  width: 200px;
+}
+

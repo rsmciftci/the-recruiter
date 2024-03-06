@@ -8,6 +8,7 @@ export const default_male_photo = baseURL + "/static/default_images/male.jpg"
 // TODO: change it to candidateSlice
 const initialState = {
     login: false,
+    id : "",
     first_name: "",
     surname: "",
     phone: "",
@@ -25,22 +26,22 @@ export const recruiterSlice = createSlice({
             state.login = !state.login
         },
         setRecruiter: (state, action) => {
+            state.id = action.payload.id;
             state.first_name = action.payload.first_name;
             state.surname = action.payload.surname;
             state.phone = action.payload.phone;
             state.email = action.payload.email;
-            state.gender = action.payload.gender;
             state.company = action.payload.company;
         },
 
 
         initailizeRecruiter: (state) => {
             state.login = false;
+            state.id = "";
             state.first_name = "";
             state.surname = "";
             state.phone = "";
             state.email = "";
-            state.gender = "";
             state.company = "";
         }
 

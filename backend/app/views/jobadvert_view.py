@@ -5,11 +5,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from ..models import JobAdvert
 from ..models import Candidate
-
+from datetime import datetime
 
 @api_view(["POST"])
 def add_jobadvert(request):
+    current_date = datetime.now()
+    publish_date = current_date.date()
+    request.data["publish_date"] = publish_date
     serializer = JobAdvertSerializer(data=request.data)
+
     if serializer.is_valid():
         serializer.save()
         return Response(status=status.HTTP_201_CREATED)

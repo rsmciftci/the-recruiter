@@ -5,7 +5,6 @@ from .views import (
     jobadvert_view,
     candidate_views,
     cvtest_views,
-    test_view,
 )
 
 urlpatterns = [
@@ -51,6 +50,7 @@ urlpatterns = [
         jobadvert_view.update_job_for_adding_candidate,
     ),
     path("jobadvert-delete", jobadvert_view.update_job_for_delete_candidate),
-    path("cvtest/", cvtest_views.add_cv),
-    path("test/", test_view.my_view),
+    
+    
+
 ]

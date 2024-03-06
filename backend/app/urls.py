@@ -40,6 +40,10 @@ urlpatterns = [
         "jobadvert-by-candidateid/<int:candidate_id>",
         jobadvert_view.find_jobs_applied_by_candidate,
     ),
+     path(
+        "jobadvert-by-recruiterid/<int:recruiterid>",
+        jobadvert_view.find_jobs_by_recruiter,
+    ),
     path("jobadvert-by-title/<str:title>", jobadvert_view.find_jobs_applied_by_title),
     path("jobadvert-by-id/<int:id>", jobadvert_view.find_job_by_id),
     path(

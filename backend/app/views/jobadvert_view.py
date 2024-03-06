@@ -4,7 +4,7 @@ from ..serializers.jobadvert_serializer import JobAdvertSerializerWithoutCandida
 from rest_framework.response import Response
 from rest_framework import status
 from ..models import JobAdvert
-from ..models import Candidate
+from ..models import Candidate, Recruiter
 from datetime import datetime
 
 @api_view(["POST"])
@@ -27,6 +27,17 @@ def find_jobs_applied_by_candidate(request, candidate_id):
     job_adverts = candidate.jobadvert_set.all().order_by('-publish_date')
     
     serializer = JobAdvertSerializerWithoutCandidateAndRecruiter(job_adverts, many=True)
+    serialized_data = serializer.data
+    
+    return Response(serialized_data,status=status.HTTP_200_OK)
+
+@api_view(["GET"])
+def find_jobs_by_recruiter(request, recruiterid):
+    
+    recruiter = Recruiter.objects.get(id=recruiterid)
+    job_adverts = recruiter.jobadvert_set.all().order_by('-publish_date')
+    
+    serializer = JobAdvertSerializer(job_adverts, many=True)
     serialized_data = serializer.data
     
     return Response(serialized_data,status=status.HTTP_200_OK)

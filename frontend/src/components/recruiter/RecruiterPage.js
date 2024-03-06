@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import Recruiter from './Recruiter'
-import RecruiterLogin from './RecruiterLogin'
+import 'react-toastify/dist/ReactToastify.css';
+import RecruiterProfile from "./RecruiterProfile";
 
 function RecruiterPage() {
 
-    const recruiterData = useSelector(state => state.data.recruiterSlice);
+    const dispatch = useDispatch()
+    const isProfileEditOpen = useSelector(state => state.profilePage.isProfileEditOpen);
+
+
 
     return (
-
         <div>
-           { recruiterData.login ? <Recruiter/> : <RecruiterLogin/>}
+            {isProfileEditOpen ? "acik" : <RecruiterProfile />}       
+
         </div>
     );
 }

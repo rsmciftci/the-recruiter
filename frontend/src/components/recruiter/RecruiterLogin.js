@@ -28,6 +28,7 @@ function RecruiterLogin() {
             .then(response => {
                 delete response.data.password //TODO: change backend to remove password from response
                 dispatch(setRecruiter(response.data))
+                console.log(response.data)
                 dispatch(updateRecruiterLogin())             
 
             })

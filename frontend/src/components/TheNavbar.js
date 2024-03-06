@@ -78,11 +78,11 @@ function TheNavbar() {
             }
 
 
-            {recruiterData.login ?
+            {/* {recruiterData.login ?
               <Nav >
                 <Nav.Link href="http://localhost:3000/recruiter/profile">Profile</Nav.Link>
               </Nav> : ""
-            }
+            } */}
             {recruiterData.login ?
               <Nav className={styles.myjobs}>
                 <Nav.Link href="http://localhost:3000/recruiter/myjobs" >My Jobs</Nav.Link>

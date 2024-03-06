@@ -7,8 +7,8 @@ import ProfilePage from './components/ProfilePage';
 import SearchJobs from './components/SearchJobs'
 import Job from './components/Job';
 import NewCandidate from './components/NewCandidate'
-import RecruiterPage from './components/recruiter/RecruiterPage';
 import NewRecruiter from './components/recruiter/NewRecruiter'
+import RecruiterHome from './components/recruiter/RecruiterHome';
 
 function App() {
   
@@ -25,7 +25,7 @@ function App() {
         <Route path='/search-jobs/' element={<SearchJobs />} />
         <Route path='/job/:jobId/:action' element={<Job />} />
         <Route path='/new-candidate' element={<NewCandidate />} />
-        <Route path='/recruiter' element={<RecruiterPage />} />
+        <Route path='/recruiter' element={<RecruiterHome />} />
         <Route path='/recruiter/new-recruiter' element={<NewRecruiter />} />
       </Routes>
       <TheFooter />

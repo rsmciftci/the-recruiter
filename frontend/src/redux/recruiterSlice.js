@@ -12,7 +12,6 @@ const initialState = {
     surname: "",
     phone: "",
     email: "",
-    gender: "",
     company: ""
 
 }

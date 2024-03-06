@@ -1,0 +1,44 @@
+.border {
+
+    border-color: rgb(180, 180, 180);
+    border-style:ridge;
+    border-width: 2px;
+    border-radius: 20px;
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.3); 
+    background-color: rgb(230, 230, 230) ;
+
+
+
+    width: 30%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.nameSurname {
+    padding-top: 15px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.profilePhoto {
+    width: 180px;
+    height: 171px;
+  }
+
+ .editButton {
+    width: 34px;
+    height: 31px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    margin-left : 500px;
+ } 
+.InfoDiv {
+    margin-right: 50px;
+}

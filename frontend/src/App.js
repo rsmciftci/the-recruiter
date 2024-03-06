@@ -9,6 +9,7 @@ import Job from './components/Job';
 import NewCandidate from './components/NewCandidate'
 import NewRecruiter from './components/recruiter/NewRecruiter'
 import RecruiterHome from './components/recruiter/RecruiterHome';
+import CreateJob from './components/recruiter/CreateJob';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
         <Route path='/job/:jobId/:action' element={<Job />} />
         <Route path='/new-candidate' element={<NewCandidate />} />
         <Route path='/recruiter' element={<RecruiterHome />} />
+        <Route path='recruiter/create-job' element={<CreateJob/>} />
         <Route path='/recruiter/new-recruiter' element={<NewRecruiter />} />
       </Routes>
       <TheFooter />

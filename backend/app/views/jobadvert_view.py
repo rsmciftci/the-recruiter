@@ -1,5 +1,5 @@
 from rest_framework.decorators import api_view
-from ..serializers.jobadvert_serializer import JobAdvertSerializer
+from ..serializers.jobadvert_serializer import JobAdvertSerializer, JobAdvertSerializerDepth1
 from ..serializers.jobadvert_serializer import JobAdvertSerializerWithoutCandidateAndRecruiter
 from rest_framework.response import Response
 from rest_framework import status
@@ -34,8 +34,8 @@ def find_jobs_applied_by_candidate(request, candidate_id):
 @api_view(["GET"])
 def find_jobs_by_recruiter(request, recruiterid):
     
-    job_adverts = JobAdvert.objects.prefetch_related('candidate').filter(recruiter_id=recruiterid)
-    serializer = JobAdvertSerializer(job_adverts, many=True)
+    job_adverts = JobAdvert.objects.filter(recruiter_id=recruiterid)
+    serializer = JobAdvertSerializerDepth1(job_adverts, many=True)
     serialized_data = serializer.data
     
     return Response(serialized_data,status=status.HTTP_200_OK)

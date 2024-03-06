@@ -6,6 +6,7 @@ import profileSlice from "./profileSlice"
 import appliedJobsSlice from "./appliedJobsSlice"
 import jobSearchSlice from "./jobSearchSlice"
 import recruiterSlice from "./recruiterSlice"
+import jobsSlice from "./jobsSlice"
 const persistConfig = {
     key: 'root',
     storage,
@@ -14,7 +15,8 @@ const persistConfig = {
 const reducer = combineReducers({
     candidateData : candidateSlice,
     jobSearchSlice : jobSearchSlice,
-    recruiterSlice : recruiterSlice
+    recruiterSlice : recruiterSlice,
+    jobsSlice : jobsSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer)

@@ -50,7 +50,7 @@ function CreateJob() {
             <FloatingLabel controlId="definition" label="Job Description">
                 <Form.Control
                     as="textarea"
-                    style={{ height: '100px', marginBottom: '10px' }}
+                    style={{ height: '500px', marginBottom: '10px' }}
                 />
             </FloatingLabel>
 

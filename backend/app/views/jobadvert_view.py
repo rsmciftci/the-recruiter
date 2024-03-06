@@ -34,9 +34,7 @@ def find_jobs_applied_by_candidate(request, candidate_id):
 @api_view(["GET"])
 def find_jobs_by_recruiter(request, recruiterid):
     
-    recruiter = Recruiter.objects.get(id=recruiterid)
-    job_adverts = recruiter.jobadvert_set.all().order_by('-publish_date')
-    
+    job_adverts = JobAdvert.objects.filter(recruiter_id=recruiterid).prefetch_related('candidate')
     serializer = JobAdvertSerializer(job_adverts, many=True)
     serialized_data = serializer.data
     

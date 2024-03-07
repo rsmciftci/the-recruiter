@@ -75,7 +75,7 @@ function MyJobs() {
                 <tbody>
                     {
                         jobs.slice((activePage * numberOfItemsPerPage - numberOfItemsPerPage), (activePage * numberOfItemsPerPage)).map((job, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td>{activePage * numberOfItemsPerPage - numberOfItemsPerPage + index + 1}</td>
                                 <td><a className={styles.jobTitle} onClick={() => handleShow(job)}>{job.title}</a></td>
                                 <td>{job.city}</td>

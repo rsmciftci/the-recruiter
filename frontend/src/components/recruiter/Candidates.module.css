@@ -1,0 +1,15 @@
+.tablecss {
+    width: 1290px;
+    margin-left: 310px;
+}
+
+.cv {
+    text-align: center;
+    width: 150px;
+}
+
+.pagination {
+    position: absolute;
+    bottom: 50px;
+    left: 900px;
+}

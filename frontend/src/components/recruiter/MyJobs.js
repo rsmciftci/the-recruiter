@@ -61,7 +61,6 @@ function MyJobs() {
 
     return (
         <div>
-            {console.log(jobs)}
             <Table striped bordered hover className={styles.tablecss}>
                 <thead>
 
@@ -81,7 +80,7 @@ function MyJobs() {
                                 <td><a className={styles.jobTitle} onClick={() => handleShow(job)}>{job.title}</a></td>
                                 <td>{job.city}</td>
                                 <td>{job.job_type}</td>
-                                <td className={styles.action}><a href="/test">Show Candidates</a></td>
+                                <td className={styles.action}><a href={"/recruiter/myjobs/job/candidates/" + index }>Show Candidates</a></td>
                             </tr>
 
 

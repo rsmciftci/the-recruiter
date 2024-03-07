@@ -11,6 +11,7 @@ import { initailize_appliedJobs } from '../redux/appliedJobsSlice';
 import { useState } from 'react';
 import { setJobSearchText } from '../redux/jobSearchSlice';
 import { initailizeRecruiter } from '../redux/recruiterSlice';
+import {  setCandidateSearchText } from '../redux/candidateSearchSlice';
 
 function TheNavbar() {
 
@@ -27,19 +28,22 @@ function TheNavbar() {
       window.location.href = '/';
 
     }
-
-
-
   }
+
+  const dispatch = useDispatch();
+  const candidateData = useSelector(state => state.data.candidateData);
+  const recruiterData = useSelector(state => state.data.recruiterSlice);
+  const candidateSearchText = useSelector(state => state.data.candidateSearchSlice.candidateSearchText);
 
 
 
   function searchJob(url) {
     if (url === "Enter" || url === "NumpadEnter") { window.location.href = "http://localhost:3000/search-jobs" }
   }
-  const dispatch = useDispatch();
-  const candidateData = useSelector(state => state.data.candidateData);
-  const recruiterData = useSelector(state => state.data.recruiterSlice);
+
+  function searchCandidate(url) {
+    if (url === "Enter" || url === "NumpadEnter") { window.location.href = "http://localhost:3000/recruiter/candidates/" + candidateSearchText }
+  }
 
   return (
     <div>
@@ -99,9 +103,9 @@ function TheNavbar() {
                   placeholder="Search Candidate"
                   aria-label="JobTitle"
                   aria-describedby="basic-addon1"
-                  // onChange={(e) => dispatch(setJobSearchText(e.target.value))}
+                  onChange={(e) => dispatch(setCandidateSearchText(e.target.value))}
 
-                  // onKeyUp={(e) => { searchJob(e.code) }}
+                  onKeyUp={(e) => {searchCandidate(e.code)}}
                 />
               </InputGroup> : ""
             }

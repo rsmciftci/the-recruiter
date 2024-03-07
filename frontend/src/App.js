@@ -12,6 +12,7 @@ import RecruiterHome from './components/recruiter/RecruiterHome';
 import CreateJob from './components/recruiter/CreateJob';
 import MyJobs from './components/recruiter/MyJobs';
 import Candidates from './components/recruiter/Candidates';
+import SearchCandidates from './components/recruiter/SearchCandidates';
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
         <Route path='/new-candidate' element={<NewCandidate />} />
         <Route path='/recruiter' element={<RecruiterHome />} />
         <Route path='recruiter/create-job' element={<CreateJob/>} />
+        <Route path='recruiter/candidates/:jobTitle' element={<SearchCandidates/>} />
         <Route path='/recruiter/new-recruiter' element={<NewRecruiter />} />
         <Route path='/recruiter/myjobs/job/candidates/:index' element={<Candidates />} />
         <Route path='/recruiter/myjobs' element={<MyJobs />} />

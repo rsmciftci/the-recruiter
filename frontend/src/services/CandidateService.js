@@ -16,6 +16,8 @@ const candidateService = {
 
     saveUser: (data) => axiosInstance.post("candidate/" , data),
 
+    getCandidatesByJobTitle : (jobTitle) => axiosInstance.get("candidates-by-current-position/" + jobTitle)
+
 }
 
 

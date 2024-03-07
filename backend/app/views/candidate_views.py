@@ -7,6 +7,7 @@ from ..serializers.candidate_serializers import (
     CandidateSerializerAllFields,
     CandidateSerializerPhoto,
     CandidateSerializerCV,
+    CandidateSerializerForSearchResult,
 )
 from rest_framework import serializers, status
 import hashlib
@@ -66,6 +67,18 @@ def find_candidate(request):
     )
 
 
+@api_view(["GET"])
+def find_candidate_by_current_position(request, position):
+    try:
+        candidates = Candidate.objects.filter(current_position__icontains=position)
+    except Candidate.DoesNotExist:
+        return Response(candidates, status=status.HTTP_404_NOT_FOUND)
+    return Response(
+        CandidateSerializerForSearchResult(candidates, many=True).data,
+        status=status.HTTP_200_OK,
+    )
+
+
 @api_view(["PUT", "DELETE"])
 def update_or_delete_candidate(request, id):
     try:
@@ -98,20 +111,20 @@ def update_or_delete_candidate(request, id):
 def add_photo(request, id):
     try:
         candidate = Candidate.objects.get(id=id)
-     
 
     except Candidate.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = CandidateSerializerPhoto(candidate, request.data)
     # TODO: check if it is in image format
- 
+
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(status.HTTP_400_BAD_REQUEST)
-    
+
+
 @api_view(["PUT"])
 def add_cv(request, id):
     try:

@@ -17,6 +17,7 @@ urlpatterns = [
         candidate_views.update_or_delete_candidate,
         name="update_or_delete_candidate",
     ),
+    path("candidates-by-current-position/<str:position>", candidate_views.find_candidate_by_current_position),
     path("candidate-photo/<int:id>", candidate_views.add_photo, name="add_photo"),
     path("candidate-cv/<int:id>", candidate_views.add_cv, name="add_cv"),
     
